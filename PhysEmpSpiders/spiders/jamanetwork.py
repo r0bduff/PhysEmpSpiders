@@ -9,23 +9,27 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 class JamanetworkSpider(scrapy.Spider):
     name = 'jamanetwork'
     
-    url_link = 'https://careers.jamanetwork.com/searchjobs/?countrycode=US&Page=35'
+    url_link = 'https://careers.jamanetwork.com/searchjobs/?countrycode=US&Page=1'
     
     start_urls = [client.scrapyGet(url = url_link)]
 
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
     def parse(self, response):
-        for post in response.css('.lister__item--jobs-feed-eligible'):
-            url = 'careers.jamanetwork.com' + post.css('.lister__header a::attr(href)').get().replace('\r','').replace('\n','').replace('\t','').strip()
-            title = post.css('.js-clickable-area-link span::text').get()
-            business_name = post.css('.lister__meta-item--recruiter::text').get()
-            yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name})
+        for post in response.css('.js-clickable'):
+            try:
+                url = 'https://careers.jamanetwork.com' + str(post.css('.lister__header a::attr(href)').get()).replace('\r','').replace('\n','').replace('\t','').strip()
+                title = post.css('.js-clickable-area-link span::text').get()
+                business_name = post.css('.lister__meta-item--recruiter::text').get()
+                if(url is not None):
+                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name})
+            except Exception as e:
+                print(e)
 
         #pagination
         next_page = response.css('.paginator__item:nth-child(8) a::attr(href)').get()
         if(next_page is not None):
-            next_page = 'careers.jamanetwork.com' + next_page
+            next_page = 'https://careers.jamanetwork.com' + next_page
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):

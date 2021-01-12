@@ -25,8 +25,9 @@ class AdventhealthSpider(scrapy.Spider):
             date_posted = post.css('.job-result-date-posted-cell::text').get().replace('\n', '').strip()
             yield scrapy.Request(client.scrapyGet(url = url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'city': city, 'state': state})
 
-        next_page = 'jobs.adventhealth.com' + str(response.css('.next-page-caret a::attr(href)').get())
-        if next_page is not None:   
+        next_page = response.css('.next-page-caret::attr(href)').get()
+        if(next_page is not None):   
+            next_page = 'https://jobs.adventhealth.com' + next_page
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):
