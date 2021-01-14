@@ -7,7 +7,7 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
 class PracticematchSpider(scrapy.Spider):
     name = 'PracticeMatch'
-    url_link = ['https://www.practicematch.com/physicians/jobs/']
+    url_link = 'https://www.practicematch.com/physicians/jobs/'
     start_urls = [client.scrapyGet(url = url_link)]
 
     def parse(self, response):
@@ -21,6 +21,12 @@ class PracticematchSpider(scrapy.Spider):
                 city = response.css('.result-loc::text').get().split(',')[0]
                 state = response.css('.result-loc::text').get().split(',')[1].strip()
             yield scrapy.Request(client.scrapyGet(url = url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'city': city, 'state': state})
+        
+        #pagination
+        next_page = response.css('li:nth-child(7) span').get()
+        if(next_page is not None):
+            next_page = 'https://www.practicematch.com' + next_page
+            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):
         try:
