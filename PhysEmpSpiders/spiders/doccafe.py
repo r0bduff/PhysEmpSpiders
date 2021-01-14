@@ -12,7 +12,7 @@ class DoccafeSpider(scrapy.Spider):
 
     start_urls = [client.scrapyGet(url = url_link)]
 
-    #custom_settings={ 'FEED_URI': "DocCafe_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    #custom_settings={ 'FEED_URI': "DocCafe_%(time)s.csv", 'FEED_FORMAT': 'csv'}kjdf
 
     def parse(self, response):
         for post in response.css('div.job'):   
