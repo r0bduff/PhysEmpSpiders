@@ -6,9 +6,10 @@ import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
-class HealthecareersSpider(scrapy.Spider):
-    name = 'healthecareers'
-    url_link = 'https://www.healthecareers.com/search-jobs/?catid=&ps=100&pg=1/'
+class NejmcareercenterSpider(scrapy.Spider):
+    name = 'nejmcareercenter'
+
+    url_link = 'https://www.nejmcareercenter.org/jobs/2/'
     
     start_urls = [client.scrapyGet(url = url_link)]
 
@@ -16,20 +17,21 @@ class HealthecareersSpider(scrapy.Spider):
 
 #Parse main page
     def parse(self, response):
-        for post in response.css('.job-results-card'):
+        for post in response.css(''):
             try:
-                url = response.css('.job-results-card a::attr(href)').get()  
-                title = response.css('#job-results-job-title span::text').get()
-                location = response.css('.job-results-card a::attr(data-location)').get() 
-                business_name = response.css('.job-results-card #job-results-employer::text').get()
+                url = 'https://www.nejmcareercenter.org' + str(response.css('.lister__header a::attr(href)').get()).replace('\r','').replace('\t','').replace('\n','').strip()
+                title = response.css('.js-clickable-area-link span::text').get().replace('\xa0',' ')
+                location = response.css('.lister__meta-item--location::text').get()
+                business_name = response.css('.lister__meta-item--recruiter::text').get()
                 if(url is not None):
                     yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'location': location, 'business_name': business_name})
             except Exception as e:
                 print(e)
 
         #pagination
-        next_page = response.css('#job-results-next a::attr(href)').get() 
+        next_page = response.css('.paginator__items li:nth-child(7) a::attr(href)').get()
         if(next_page is not None):
+            next_page = 'https://www.nejmcareercenter.org' + next_page
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
 #Parse listing page
@@ -55,26 +57,20 @@ class HealthecareersSpider(scrapy.Spider):
         else:
             state = location[0].strip()
             city = ''
-
-        jobtype = response.css('#tag-26::text').get()
-        if(jobtype is None):
-            jobtype = response.css('#tag-25::text').get()
-            if(jobtype is None):
-                jobtype = ''
        
         try:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': '',
+                'specialty': response.css('.job-detail-description__category-Specialty dd a::text').get(),
                 'hospital_name': '',
-                'job_salary': '',
-                'job_type': jobtype,
+                'job_salary': response.css('.job-detail-description__salary dd span::text').get(),
+                'job_type': response.css('.job-detail-description__category-PositionType dd a::text').get(),
                 'job_state': state,
                 'job_city': city,
                 'job_address': '',
-                'date_posted': response.css('li:nth-child(1) p::text').get().replace('Date Posted: ',''),
+                'date_posted': datetime.strptime(response.css('.job-detail-description__posted-date dd span::text').get(), '%b %d, %Y').strftime('%Y-%m-%d'),
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'healthecareers',
+                'source_site': 'nejmcareercenter',
                 'url': response.meta['url'],
                 'description': '',
                 'business_type': '',
@@ -104,7 +100,7 @@ class HealthecareersSpider(scrapy.Spider):
                 'job_address': '',
                 'date_posted': '',
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'healthecareers',
+                'source_site': 'nejmcareercenter',
                 'url': response.meta['url'],
                 'description': '',
                 'business_type': '',
