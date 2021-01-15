@@ -9,7 +9,7 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 class HospitalrecruitingSpider(scrapy.Spider):
     name = 'hospitalrecruiting'
     
-    url_link = 'https://www.hospitalrecruiting.com/jobs/Physician-Jobs/?page=1'
+    url_link = 'https://www.hospitalrecruiting.com/jobs/Physician-Jobs/?numberjobs=100&page=1'
 
     start_urls = [client.scrapyGet(url = url_link)]
 
@@ -95,7 +95,7 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'job_city': loc[0],
                 'job_address': loc[3],
                 'date_posted': '',
-                'date_scraped': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'HospitalRecruiting',
                 'url': response.meta['url'],
                 'description': '',
@@ -125,7 +125,7 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'job_city': '',
                 'job_address': '',
                 'date_posted': '',
-                'date_scraped': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'HospitalRecruiting',
                 'url': response.meta['url'],
                 'description': '',
