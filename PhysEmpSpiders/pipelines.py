@@ -224,7 +224,8 @@ class PhysempspidersPipeline:
             try:
                 self.cursor.execute("SELECT * FROM Employee WHERE Recruiter_Id=%s AND Emp_number=%s", (Recruiter[0], item['contact_number']))
                 number = self.cursor.fetchone()
-                E_id = number[0]
+                if(number is not None):
+                    E_id = number[0]
             except Exception as e:
                 print('Error 10.1: Insert_Emp number broke ' + str(item['contact_number']) + str(e))
         if(number is None):
@@ -232,7 +233,8 @@ class PhysempspidersPipeline:
                 try:
                     self.cursor.execute("SELECT * FROM Employee WHERE Recruiter_Id=%s AND Emp_email=%s", (Recruiter[0], item['contact_email']))
                     email = self.cursor.fetchone()
-                    E_id = email[0]
+                    if(number is not None):
+                        E_id = email[0]
                 except Exception as e:
                     print('Error 10.2: Insert_Emp email broke ' + str(item['contact_email']) + str(e))
 
@@ -251,8 +253,6 @@ class PhysempspidersPipeline:
             self.Update_Emp(item, E_id)
         
         return E_id
-
-        
 
 #@method Update Emp
     def Update_Emp(self, item, Emp_Id):

@@ -29,7 +29,7 @@ class HealthecareersSpider(scrapy.Spider):
 
         #pagination
         next_page = response.css('#job-results-next a::attr(href)').get() 
-        if(next_page is not None):
+        if(next_page is not None and next_page != 'javascript:void(0);'):
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
 #Parse listing page

@@ -14,6 +14,11 @@ class JamanetworkSpider(scrapy.Spider):
     start_urls = [client.scrapyGet(url = url_link)]
 
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    def start_requests(self):
+        lastpagenum = 338
+        for i in range(lastpagenum):
+            next_page = 'https://careers.jamanetwork.com/searchjobs/?countrycode=US&Page=' + str(i)
+            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse(self, response):
         for post in response.css('.js-clickable'):
@@ -27,10 +32,10 @@ class JamanetworkSpider(scrapy.Spider):
                 print(e)
 
         #pagination
-        next_page = response.css('.paginator__item:nth-child(8) a::attr(href)').get()
-        if(next_page is not None):
-            next_page = 'https://careers.jamanetwork.com' + next_page
-            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+        #next_page = response.css('.paginator__item:nth-child(8) a::attr(href)').get()
+        #if(next_page is not None):
+            #next_page = 'https://careers.jamanetwork.com' + next_page
+            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):
         print('---------------------CHECKING INTERIOR PAGE--------------------------')

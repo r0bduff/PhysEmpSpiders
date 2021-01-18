@@ -17,7 +17,7 @@ class NejmcareercenterSpider(scrapy.Spider):
 
 #Parse main page
     def parse(self, response):
-        for post in response.css(''):
+        for post in response.css('.lister__item--promoted-job'):
             try:
                 url = 'https://www.nejmcareercenter.org' + str(response.css('.lister__header a::attr(href)').get()).replace('\r','').replace('\t','').replace('\n','').strip()
                 title = response.css('.js-clickable-area-link span::text').get().replace('\xa0',' ')
