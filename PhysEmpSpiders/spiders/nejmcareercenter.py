@@ -15,6 +15,12 @@ class NejmcareercenterSpider(scrapy.Spider):
 
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
+    def start_requests(self):
+        lastpagenum = 298
+        for i in range(lastpagenum):
+            next_page = 'https://www.nejmcareercenter.org/jobs/' + str(i)
+            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+
 #Parse main page
     def parse(self, response):
         for post in response.css('.lister__item--promoted-job'):
@@ -29,10 +35,10 @@ class NejmcareercenterSpider(scrapy.Spider):
                 print(e)
 
         #pagination
-        next_page = response.css('.paginator__items li:nth-child(7) a::attr(href)').get()
-        if(next_page is not None):
-            next_page = 'https://www.nejmcareercenter.org' + next_page
-            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+        #next_page = response.css('.paginator__items li:nth-child(7) a::attr(href)').get()
+        #if(next_page is not None):
+            #next_page = 'https://www.nejmcareercenter.org' + next_page
+            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
 #Parse listing page
     def parse_listing(self, response):
