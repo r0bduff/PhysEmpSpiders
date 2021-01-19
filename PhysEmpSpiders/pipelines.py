@@ -54,6 +54,7 @@ class PhysempspidersPipeline:
                     if(item['job_state'] == None): item['job_state'] = hospital[3]
                     if(item['job_city'] == None): item['job_city'] = hospital[2]
                     if(item['job_address'] == None): item['job_address'] = hospital[1]
+                    item['hospial_name'] = hospital[4]
                     item['hospital_id'] = hospital[0]
                     #inserts new job that contains a hospital_id
                     self.Insert_Job_H(row[0], item, E_id)
@@ -74,6 +75,7 @@ class PhysempspidersPipeline:
                     if(item['job_state'] == None): item['job_state'] = hospital[3]
                     if(item['job_city'] == None): item['job_city'] = hospital[2]
                     if(item['job_address'] == None): item['job_address'] = hospital[1]
+                    item['hospial_name'] = hospital[4]
                     item['hospital_id'] = hospital[0]
                     #inserts new job that contains a hospital_id
                     self.Insert_Job_H(id[0], item, E_id)
@@ -187,28 +189,35 @@ class PhysempspidersPipeline:
 
         if(item['hospital_name'] is not None and hospital is None):
             try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE FROM Hospitals WHERE NAME=%s AND CITY=%s", (item['hospital_name'], item['job_city']))
+                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE NAME=%s AND CITY=%s", (item['hospital_name'], item['job_city']))
+                hospital = self.cursor.fetchone()
+            except Exception as e:
+                print('Error 7: Check_hospital broke' + item['url'] + str(e))
+        
+        if(item['business_name'] is not None and hospital is None):
+            try:
+                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE NAME=%s AND CITY=%s", (item['business_name'], item['job_city']))
                 hospital = self.cursor.fetchone()
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
 
         if(item['business_website'] is not None and hospital is None):
             try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE FROM Hospitals WHERE WEBSITE=%s", (item['business_website']))
+                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE WEBSITE=%s", (item['business_website']))
                 hospital = self.cursor.fetchone()
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
     
         if(item['contact_number'] is not None and hospital is None):
             try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE FROM Hospitals WHERE TELEPHONE=%s", (item['contact_number']))
+                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE TELEPHONE=%s", (item['contact_number']))
                 hospital = self.cursor.fetchone()
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
         
         if(item['job_address'] is not None and hospital is None):
             try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE FROM Hospitals WHERE ADDRESS=%s", (item['job_address']))
+                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE ADDRESS=%s", (item['job_address']))
                 hospital = self.cursor.fetchone()
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
