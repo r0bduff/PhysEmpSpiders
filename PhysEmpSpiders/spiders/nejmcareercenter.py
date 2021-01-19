@@ -9,9 +9,9 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 class NejmcareercenterSpider(scrapy.Spider):
     name = 'nejmcareercenter'
 
-    url_link = 'https://www.nejmcareercenter.org/jobs/2/'
+    #url_link = 'https://www.nejmcareercenter.org/jobs/1/'
     
-    start_urls = [client.scrapyGet(url = url_link)]
+    #start_urls = [client.scrapyGet(url = url_link)]
 
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
@@ -57,11 +57,13 @@ class NejmcareercenterSpider(scrapy.Spider):
             phone = findphone.group(0)
 
         location = response.meta['location']
-        if(len(location) == 2):
+        comma = ','
+        if comma in location:
+            location = location.split(',')
             city = location[0]
             state = location[1].strip()
         else:
-            state = location[0].strip()
+            state = location
             city = ''
        
         try:
@@ -78,7 +80,7 @@ class NejmcareercenterSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'nejmcareercenter',
                 'url': response.meta['url'],
-                'description': '',
+                'description': response.css('.job-description').get().replace(",",'').replace("'",''),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
@@ -91,6 +93,7 @@ class NejmcareercenterSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
             yield job
 
@@ -121,6 +124,7 @@ class NejmcareercenterSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
             print(e)
             yield job

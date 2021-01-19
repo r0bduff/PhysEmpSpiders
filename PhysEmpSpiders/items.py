@@ -32,3 +32,4 @@ class PhysempspidersItem(scrapy.Item):
     business_zip = scrapy.Field()
     business_website = scrapy.Field()
     hospital_id = scrapy.Field()
+    Ref_num = scrapy.Field()

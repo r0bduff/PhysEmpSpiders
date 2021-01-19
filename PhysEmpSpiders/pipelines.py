@@ -92,8 +92,8 @@ class PhysempspidersPipeline:
     def Insert_Job_H(self, R_id, item, Emp_Id):
         #make new job with hospital
         try:
-            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Date_posted, Date_scraped, Source_site, URL, Description, Hospital_id, Hospital_name) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['url'], item['description'], item['hospital_id'], item['hospital_name']))
+            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Date_posted, Date_scraped, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['url'], item['description'], item['hospital_id'], item['hospital_name'], item['Ref_num']))
             self.conn.commit()
         except Exception as e:
                 print('Error 8: Insert Job Hospital Broke' + item['url'] + str(e))
@@ -103,8 +103,8 @@ class PhysempspidersPipeline:
     def Insert_Job(self, R_id, item, Emp_Id):
         #make new job
         try:
-            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Date_posted, Date_scraped, Source_site, URL, Description, Hospital_name) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['url'], item['description'], item['hospital_name']))
+            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Date_posted, Date_scraped, Source_site, URL, Description, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num']))
             self.conn.commit()
         except Exception as e:
                 print('Error 3: Insert Job Broke' + item['url'] + ' Date:' + item['date_scraped'] + ' Error:' + str(e))
