@@ -24,10 +24,10 @@ class HealthecareersSpider(scrapy.Spider):
     def parse(self, response):
         for post in response.css('.job-results-card'):
             try:
-                url = response.css('.job-results-card a::attr(href)').get()  
-                title = response.css('#job-results-job-title span::text').get()
-                location = response.css('.job-results-card a::attr(data-location)').get() 
-                business_name = response.css('.job-results-card #job-results-employer::text').get()
+                url = post.css('.job-results-card a::attr(href)').get()  
+                title = post.css('#job-results-job-title span::text').get()
+                location = post.css('.job-results-card a::attr(data-location)').get() 
+                business_name = post.css('.job-results-card #job-results-employer::text').get()
                 if(url is not None):
                     yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'location': location, 'business_name': business_name})
             except Exception as e:

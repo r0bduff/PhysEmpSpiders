@@ -54,7 +54,7 @@ class PhysempspidersPipeline:
                     if(item['job_state'] == None): item['job_state'] = hospital[3]
                     if(item['job_city'] == None): item['job_city'] = hospital[2]
                     if(item['job_address'] == None): item['job_address'] = hospital[1]
-                    item['hospial_name'] = hospital[4]
+                    item['hospital_name'] = hospital[4]
                     item['hospital_id'] = hospital[0]
                     #inserts new job that contains a hospital_id
                     self.Insert_Job_H(row[0], item, E_id)
@@ -75,7 +75,7 @@ class PhysempspidersPipeline:
                     if(item['job_state'] == None): item['job_state'] = hospital[3]
                     if(item['job_city'] == None): item['job_city'] = hospital[2]
                     if(item['job_address'] == None): item['job_address'] = hospital[1]
-                    item['hospial_name'] = hospital[4]
+                    item['hospital_name'] = hospital[4]
                     item['hospital_id'] = hospital[0]
                     #inserts new job that contains a hospital_id
                     self.Insert_Job_H(id[0], item, E_id)

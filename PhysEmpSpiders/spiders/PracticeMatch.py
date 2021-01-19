@@ -12,14 +12,14 @@ class PracticematchSpider(scrapy.Spider):
 
     def parse(self, response):
         for post in response.css('#results > li'):
-            url = 'www.practicematch.com' + response.css('.col-md-8 a::attr(href)').get()
-            title = response.css('.result-title::text').get()
-            business_name = response.css('.results-co::text').get()  
-            if(response.css('.result-loc::text').get().find(',') == -1):
-               state = response.css('.result-loc::text').get() 
+            url = 'www.practicematch.com' + post.css('.col-md-8 a::attr(href)').get()
+            title = post.css('.result-title::text').get()
+            business_name = post.css('.results-co::text').get()  
+            if(post.css('.result-loc::text').get().find(',') == -1):
+               state = post.css('.result-loc::text').get() 
             else:
-                city = response.css('.result-loc::text').get().split(',')[0]
-                state = response.css('.result-loc::text').get().split(',')[1].strip()
+                city = post.css('.result-loc::text').get().split(',')[0]
+                state = post.css('.result-loc::text').get().split(',')[1].strip()
             yield scrapy.Request(client.scrapyGet(url = url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'city': city, 'state': state})
         
         #pagination

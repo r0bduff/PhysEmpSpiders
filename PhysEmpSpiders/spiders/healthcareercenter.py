@@ -9,24 +9,32 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
 class HealthcareercenterSpider(scrapy.Spider):
     name = 'healthcareercenter'
-    custom_settings={ 'FEED_URI': "healthcareercenter_%(time)s.csv", 'FEED_FORMAT': 'csv'}
-
-    def start_requests(self):
-        lastpagenum = 102
-        for i in range(lastpagenum):
-            next_page = 'https://jobs.healthcareercenter.com/jobs/?discipline=physicians%2Dsurgeons&keywords=&sort=&page=' + str(i)
-            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+    #custom_settings={ 'FEED_URI': "healthcareercenter_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    url_link = 'https://jobs.healthcareercenter.com/jobs/?discipline=physicians%2Dsurgeons&keywords=&sort=&page=1'
+    
+    start_urls = [client.scrapyGet(url = url_link)]
+    #def start_requests(self):
+        #lastpagenum = 102
+        #for i in range(lastpagenum):
+            #next_page = 'https://jobs.healthcareercenter.com/jobs/?discipline=physicians%2Dsurgeons&keywords=&sort=&page=' + str(i)
+            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse(self, response):
         for post in response.css('.bti-ui-job-detail-container'):
             try:
-                url = 'https://jobs.healthcareercenter.com' + str(response.css('#jobURL::attr(href)').get())
-                title = response.css('#jobURL::text').get() 
-                business_name = str(response.css('.bti-ui-job-result-detail-employer::text').get()).replace('\t','').replace('\n','').strip()
+                url = 'https://jobs.healthcareercenter.com' + str(post.css('.bti-ui-job-result-detail-title a::attr(href)').get())
+                title = post.css('.bti-ui-job-result-detail-title a::text').get() 
+                business_name = str(post.css('.bti-ui-job-result-detail-employer::text').get()).replace('\t','').replace('\n','').strip()
                 if(url is not None):
                     yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name})
             except Exception as e:
-                print(e)
+                print('-------PAGE NOT FOUND ERROR------' + str(e))
+
+        #pagination
+        next_page = response.css('.bti-pagination-prev-next:last-child::attr(href)').get()
+        if(next_page is not None):
+            next_page = 'https://jobs.healthcareercenter.com' + next_page
+            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
 #Parse listing page
     def parse_listing(self, response):
@@ -86,6 +94,7 @@ class HealthcareercenterSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
             yield job
 
@@ -116,6 +125,7 @@ class HealthcareercenterSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
             print(e)
             yield job

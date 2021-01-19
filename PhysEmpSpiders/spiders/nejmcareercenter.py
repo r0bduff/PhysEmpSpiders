@@ -25,10 +25,10 @@ class NejmcareercenterSpider(scrapy.Spider):
     def parse(self, response):
         for post in response.css('.lister__item'):
             try:
-                url = 'https://www.nejmcareercenter.org' + str(response.css('.lister__header a::attr(href)').get()).replace('\r','').replace('\t','').replace('\n','').strip()
-                title = response.css('.js-clickable-area-link span::text').get().replace('\xa0',' ')
-                location = response.css('.lister__meta-item--location::text').get()
-                business_name = response.css('.lister__meta-item--recruiter::text').get()
+                url = 'https://www.nejmcareercenter.org' + str(post.css('.lister__header a::attr(href)').get()).replace('\r','').replace('\t','').replace('\n','').strip()
+                title = post.css('.js-clickable-area-link span::text').get().replace('\xa0',' ')
+                location = post.css('.lister__meta-item--location::text').get()
+                business_name = post.css('.lister__meta-item--recruiter::text').get()
                 if(url is not None):
                     yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'location': location, 'business_name': business_name})
             except Exception as e:
