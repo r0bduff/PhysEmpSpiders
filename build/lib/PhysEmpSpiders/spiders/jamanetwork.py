@@ -74,7 +74,7 @@ class JamanetworkSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'jamanetwork',
                 'url': response.meta['url'],
-                'description': '',
+                'description': response.css('.job-description').get(),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
@@ -86,7 +86,7 @@ class JamanetworkSpider(scrapy.Spider):
                 'business_zip': '',
                 'hospital_type': '',
                 'business_website': '',
-                'hospital_id': '',
+                'hospital_id': response.css('.job-detail-description__job-ref .three-fifths::text').get(),
             })
             yield job
 
