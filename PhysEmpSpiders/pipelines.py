@@ -35,6 +35,7 @@ class PhysempspidersPipeline:
         
         E_id = None
         #if the item we are processing does not have email or number info then we need to handle matching to the recruiter id based on its name. (ugly but necessary.)
+        row = None
         try:
             self.cursor.execute("SELECT * FROM Recruiter WHERE Business_name=%s", item['business_name'])
             row = self.cursor.fetchone()
