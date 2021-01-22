@@ -8,7 +8,7 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
 class HealthjobsnationwideSpider(scrapy.Spider):
     name = 'healthjobsnationwide'
-    custom_settings={ 'FEED_URI': "hjnationwide_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    #custom_settings={ 'FEED_URI': "hjnationwide_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
 
     def start_requests(self):
