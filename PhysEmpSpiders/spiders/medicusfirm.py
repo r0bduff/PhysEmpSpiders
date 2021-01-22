@@ -6,28 +6,25 @@ import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
-class HealthjobsnationwideSpider(scrapy.Spider):
-    name = 'healthjobsnationwide'
-    #custom_settings={ 'FEED_URI': "hjnationwide_%(time)s.csv", 'FEED_FORMAT': 'csv'}
-    #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
+class MedicusfirmSpider(scrapy.Spider):
+    name = 'medicusfirm'
 
+    #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 120
+        lastpagenum = 37
         for i in range(lastpagenum):
-            next_page = 'https://www.healthjobsnationwide.com/jobs/physician?page=' + str(i)
+            next_page = 'https://www.themedicusfirm.com/physician/jobs/page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
-
     def parse(self, response):
-        for post in response.css('.job__content'):
+        for post in response.css('.job-list-item'):
             try:
-                url = post.css('h2 a::attr(href)').get() 
-                title = post.css('h2 a::text').get()
-                business_name = post.css('.recruiter-company-profile-job-organization::text').get()
-                date_posted = post.css('.date::text').get().replace(',','').replace('\n','').strip()
-                location = response.css('.location span::text').get()
+                url = 'https://www.themedicusfirm.com' + str(post.css('h4 a::attr(href)').get())
+                title = post.css('h4 a::text').get() 
+                business_name = 'TheMedicusFirm'
+                location = post.css('.city_state::text').get() 
                 if(url is not None):
-                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'location': location})
+                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'location': location})
             except Exception as e:
                 print(e)
 
@@ -37,17 +34,17 @@ class HealthjobsnationwideSpider(scrapy.Spider):
 
         #find emails
         email = ''
-        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.even p').get())
+        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.tabs').get())
         if(findemail is not None):
             email = findemail.group(0)
 
         #find phone numbers
         phone = ''
-        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.even p').get())
+        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.tabs').get())
         if(findphone is not None):
-            phone = findphone.group(0)
+            phone = '(214) ' + str(findphone.group(0))
 
-        location = response.meta['location']
+        location = str(response.meta['location']).split(',')
         if(len(location) == 2):
             city = location[0]
             state = location[1].strip()
@@ -65,11 +62,11 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 'job_state': state,
                 'job_city': city,
                 'job_address': '',
-                'date_posted': response.meta['date_posted'],
+                'date_posted': '',
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'healthjobsnationwide',
+                'source_site': 'medicusfirm',
                 'url': response.meta['url'],
-                'description': response.css('.even p::text').get(),
+                'description': str(response.css('.col-sm-6').get()).replace('\r','').replace('\t','').replace('\n','').strip(),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
@@ -82,7 +79,7 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
-                'Ref_num': '',
+                'Ref_num': response.css('.standard_list li:nth-child(2)::text').get(),
             })
             yield job
 
@@ -98,7 +95,7 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 'job_address': '',
                 'date_posted': '',
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'healthjobsnationwide',
+                'source_site': 'medicusfirm',
                 'url': response.meta['url'],
                 'description': '',
                 'business_type': '',
@@ -115,5 +112,5 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 'hospital_id': '',
                 'Ref_num': '',
             })
-            print(str(e))
+            print(e)
             yield job
