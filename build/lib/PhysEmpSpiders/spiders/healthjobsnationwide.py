@@ -6,53 +6,48 @@ import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
-class JamanetworkSpider(scrapy.Spider):
-    name = 'jamanetwork'
-    
-    url_link = 'https://careers.jamanetwork.com/searchjobs/?countrycode=US&Page=1'
-    
-    start_urls = [client.scrapyGet(url = url_link)]
+class HealthjobsnationwideSpider(scrapy.Spider):
+    name = 'healthjobsnationwide'
+    custom_settings={ 'FEED_URI': "hjnationwide_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
 
-    #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 338
+        lastpagenum = 120
         for i in range(lastpagenum):
-            next_page = 'https://careers.jamanetwork.com/searchjobs/?countrycode=US&Page=' + str(i)
+            next_page = 'https://www.healthjobsnationwide.com/jobs/physician?page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
+
     def parse(self, response):
-        for post in response.css('.js-clickable'):
+        for post in response.css('.job__content'):
             try:
-                url = 'https://careers.jamanetwork.com' + str(post.css('.lister__header a::attr(href)').get()).replace('\r','').replace('\n','').replace('\t','').strip()
-                title = post.css('.js-clickable-area-link span::text').get()
-                business_name = post.css('.lister__meta-item--recruiter::text').get()
+                url = post.css('h2 a::attr(href)').get() 
+                title = post.css('h2 a::text').get()
+                business_name = post.css('.recruiter-company-profile-job-organization::text').get()
+                date_posted = post.css('.date::text').get().replace(',','').replace('\n','').strip()
+                location = response.css('.location span::text').get()
                 if(url is not None):
-                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name})
+                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'location': location})
             except Exception as e:
                 print(e)
 
-        #pagination
-        #next_page = response.css('.paginator__item:nth-child(8) a::attr(href)').get()
-        #if(next_page is not None):
-            #next_page = 'https://careers.jamanetwork.com' + next_page
-            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
-
+#Parse listing page
     def parse_listing(self, response):
         print('---------------------CHECKING INTERIOR PAGE--------------------------')
 
         #find emails
         email = ''
-        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.job-description').get())
+        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.even p').get())
         if(findemail is not None):
             email = findemail.group(0)
 
         #find phone numbers
         phone = ''
-        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.job-description').get())
+        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.even p').get())
         if(findphone is not None):
             phone = findphone.group(0)
 
-        location = response.css('.job-detail-description__location span::text').get().split(',')
+        location = response.meta['location']
         if(len(location) == 2):
             city = location[0]
             state = location[1].strip()
@@ -63,30 +58,31 @@ class JamanetworkSpider(scrapy.Spider):
         try:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': response.css('.job-detail-description__category-Specialty .three-fifths a::text').get(),
-                'hospital_name': response.css('.job-detail-description__recruiter .three-fifths span::text').get(),
+                'specialty': '',
+                'hospital_name': '',
                 'job_salary': '',
-                'job_type': response.css('.job-detail-description__category-Hours .three-fifths a::text').get(),
+                'job_type': '',
                 'job_state': state,
                 'job_city': city,
                 'job_address': '',
-                'date_posted': response.css('.job-detail-description__posted-date span::text').get(),
+                'date_posted': response.meta['date_posted'],
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'jamanetwork',
+                'source_site': 'healthjobsnationwide',
                 'url': response.meta['url'],
-                'description': response.css('.job-description').get(),
+                'description': response.css('.even p::text').get(),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
                 'contact_number': phone,
                 'contact_email': email,
-                'business_state': state,
-                'business_city': city,
+                'business_state': '',
+                'business_city': '',
                 'business_address': '',
                 'business_zip': '',
                 'hospital_type': '',
                 'business_website': '',
-                'hospital_id': response.css('.job-detail-description__job-ref .three-fifths::text').get(),
+                'hospital_id': '',
+                'Ref_num': '',
             })
             yield job
 
@@ -97,12 +93,12 @@ class JamanetworkSpider(scrapy.Spider):
                 'hospital_name': '',
                 'job_salary': '',
                 'job_type': '',
-                'job_state': '',
-                'job_city': '',
+                'job_state': state,
+                'job_city': city,
                 'job_address': '',
                 'date_posted': '',
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'jamanetwork',
+                'source_site': 'healthjobsnationwide',
                 'url': response.meta['url'],
                 'description': '',
                 'business_type': '',
@@ -117,9 +113,7 @@ class JamanetworkSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
-            print(e)
+            print(str(e))
             yield job
-            
-            
-       
