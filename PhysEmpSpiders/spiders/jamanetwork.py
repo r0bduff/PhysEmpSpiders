@@ -86,7 +86,8 @@ class JamanetworkSpider(scrapy.Spider):
                 'business_zip': '',
                 'hospital_type': '',
                 'business_website': '',
-                'hospital_id': response.css('.job-detail-description__job-ref .three-fifths::text').get(),
+                'hospital_id': '',
+                'Ref_num': response.css('.job-detail-description__job-ref .three-fifths::text').get(),
             })
             yield job
 
@@ -117,6 +118,7 @@ class JamanetworkSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
             print(e)
             yield job
