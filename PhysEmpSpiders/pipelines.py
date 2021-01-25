@@ -33,22 +33,22 @@ class PhysempspidersPipeline:
             if(item[i] == ''):
                 item[i] = None
         
-        E_id = None
-        #if the item we are processing does not have email or number info then we need to handle matching to the recruiter id based on its name. (ugly but necessary.)
-        row = None
-        try:
-            self.cursor.execute("SELECT * FROM Recruiter WHERE Business_name=%s", item['business_name'])
-            row = self.cursor.fetchone()
-        except Exception as e:
-            print('Error 1: Find Business_name Broke' + str(e))
+        if(self.Check_url(item['url'])==False):
+            E_id = None
+            #if the item we are processing does not have email or number info then we need to handle matching to the recruiter id based on its name. (ugly but necessary.)
+            row = None
+            try:
+                self.cursor.execute("SELECT * FROM Recruiter WHERE Business_name=%s", item['business_name'])
+                row = self.cursor.fetchone()
+            except Exception as e:
+                print('Error 1: Find Business_name Broke' + str(e))
             
-        #The above try returns a single row from the DB of the matching recruiter id
-        #If that row exists then we will insert a new job.
-        if(row is not None):
-            if(item['contact_email'] is not None or item['contact_number'] is not None):
-                E_id = self.Update_Recruiter(row, item)
-            #add job with recruiter_id inserted into the job. row containts recruiter id
-            if(self.Check_url(item['url'])==False):
+            #The above try returns a single row from the DB of the matching recruiter id
+            #If that row exists then we will insert a new job.
+            if(row is not None):
+                if(item['contact_email'] is not None or item['contact_number'] is not None):
+                    E_id = self.Update_Recruiter(row, item)
+                #add job with recruiter_id inserted into the job. row containts recruiter id
                 #check if hospital info lines up with db entry. Update job info if necessary.
                 hospital = self.Check_Hospital(item)
                 if(hospital is not None):
@@ -61,15 +61,12 @@ class PhysempspidersPipeline:
                     self.Insert_Job_H(row[0], item, E_id)
                 else:
                     #inserts a new job that does not contain a hospital_id
-                    self.Insert_Job(row[0], item, E_id)
+                    self.Insert_Job(row[0], item, E_id) 
+            #If there is no row then a new recruiter is added to the database. 
             else:
-                print('Job already exists in DB')
-        #If there is no row then a new recruiter is added to the database. 
-        else:
-            #make new recruiter
-            id = self.Insert_Recruiter(item)
-            #make new job with new recruiter
-            if(self.Check_url(item['url'])==False):
+                #make new recruiter
+                id = self.Insert_Recruiter(item)
+                #make new job with new recruiter
                 #check if hospital info lines up with db entry. Update job info if necessary.
                 hospital = self.Check_Hospital(item)
                 if(hospital is not None):
@@ -83,10 +80,8 @@ class PhysempspidersPipeline:
                 else:
                     #inserts a new job that does not contain a hospital_id
                     self.Insert_Job(id[0], item, E_id)
-            #the job already exists in the db
-            else:
-                print('Job already exists in DB')
-        #self.conn.close()
+        else:
+            print('Job already exists in DB')
         #Item is returned at the end dont ask me why 
         return item
 
@@ -111,6 +106,16 @@ class PhysempspidersPipeline:
             self.conn.commit()
         except Exception as e:
                 print('Error 3: Insert Job Broke' + item['url'] + ' Date:' + item['date_scraped'] + ' Error:' + str(e))
+
+#@method: Update_Job
+#@description: updates Job if url already exists.
+    def Update_Job(self, item):
+        try:
+            sql = "UPDATE JOBS"
+            self.cursor.execute(sql, ())
+            self.conn.commit()
+        except Exception as e:
+            print("Error 11: Update Job Broke" + str(e))
 
 #@method: Insert_Recruiter
 #@dexcription: inserts a new recruiter into the database.
@@ -222,7 +227,7 @@ class PhysempspidersPipeline:
                 hospital = self.cursor.fetchone()
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
-         
+
         return hospital
 
 #@method Insert_Emp
@@ -241,7 +246,7 @@ class PhysempspidersPipeline:
         if(number is None):
             if(item['contact_email'] is not None):
                 try:
-                    self.cursor.execute("SELECT * FROM Employee WHERE Recruiter_Id=%s AND Emp_email=%s", (Recruiter[0], item['contact_email']))
+                    self.cursor.execute("SELECT * FROM Employee WHERE Recruiter_Id=%s AND Emp_email=%s", (Recruiter[0], str(item['contact_email']).strip('.')))
                     email = self.cursor.fetchone()
                     if(number is not None):
                         E_id = email[0]
@@ -250,7 +255,7 @@ class PhysempspidersPipeline:
 
         if(number is None and email is None):
             try:
-                self.cursor.execute("INSERT INTO Employee(Recruiter_Id, Emp_name, Emp_number, Emp_email) VALUES(%s,%s,%s,%s)", (Recruiter[0], item['contact_name'], item['contact_number'], item['contact_email']))
+                self.cursor.execute("INSERT INTO Employee(Recruiter_Id, Emp_name, Emp_number, Emp_email) VALUES(%s,%s,%s,%s)", (Recruiter[0], item['contact_name'], item['contact_number'], str(item['contact_email']).strip('.')))
                 self.conn.commit()
             except Exception as e:
                 print('Error 10.3: Insert_Emp broke ' + str(e))
@@ -267,7 +272,7 @@ class PhysempspidersPipeline:
 #@method Update Emp
     def Update_Emp(self, item, Emp_Id):
         try:
-            self.cursor.execute("UPDATE Employee SET Emp_name = COALESCE(Emp_name,%s), Emp_email = COALESCE(Emp_email,%s), Emp_number = COALESCE(Emp_number,%s) WHERE Emp_Id=%s", (item['contact_name'], item['contact_email'], item['contact_number'], Emp_Id))
+            self.cursor.execute("UPDATE Employee SET Emp_name = COALESCE(Emp_name,%s), Emp_email = COALESCE(Emp_email,%s), Emp_number = COALESCE(Emp_number,%s) WHERE Emp_Id=%s", (item['contact_name'], str(item['contact_email']).strip('.'), item['contact_number'], Emp_Id))
             self.conn.commit()
         except Exception as e:
             print('Error 11: Update_Emp broke' + str(e))
