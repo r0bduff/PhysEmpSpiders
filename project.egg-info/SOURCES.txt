@@ -1,3 +1,4 @@
+README.md
 setup.py
 PhysEmpSpiders/__init__.py
 PhysEmpSpiders/items.py
@@ -16,6 +17,7 @@ PhysEmpSpiders/spiders/hospitalrecruiting.py
 PhysEmpSpiders/spiders/jamanetwork.py
 PhysEmpSpiders/spiders/locumJobsOnline.py
 PhysEmpSpiders/spiders/mdsearch.py
+PhysEmpSpiders/spiders/medicusfirm.py
 PhysEmpSpiders/spiders/nejmcareercenter.py
 PhysEmpSpiders/spiders/physiciancareerjobs.py
 PhysEmpSpiders/spiders/pmAgencyListings.py

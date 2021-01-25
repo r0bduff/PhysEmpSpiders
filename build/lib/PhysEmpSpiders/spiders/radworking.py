@@ -9,7 +9,7 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 class RadworkingSpider(scrapy.Spider):
     name = 'radworking'
 
-    custom_settings={ 'FEED_URI': "radworking_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    #custom_settings={ 'FEED_URI': "radworking_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
         lastpagenum = 28
         for i in range(lastpagenum):
@@ -30,11 +30,14 @@ class RadworkingSpider(scrapy.Spider):
     def parse_listing(self, response):
         print('---------------------CHECKING INTERIOR PAGE--------------------------')
 
-        #find emails
         email = ''
-        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.description_comments').get())
-        if(findemail is not None):
-            email = findemail.group(0)
+        try:
+            #find emails
+            findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.description_comments').get())
+            if(findemail is not None):
+                email = findemail.group(0)
+        except Exception as e:
+            print(str(e))
 
         business_type = ''
         bus_name = ''
@@ -74,7 +77,7 @@ class RadworkingSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'radworking',
                 'url': response.meta['url'],
-                'description': str(response.css('.description_comments::text').getall()),
+                'description': str(response.css('.description_comments::text').extract()),
                 'business_type': business_type,
                 'business_name': bus_name,
                 'contact_name': str(response.css('#CompanyJobHeader tr:nth-child(2) .data::text').get()).replace('\r','').replace('\t','').replace('\n',''),

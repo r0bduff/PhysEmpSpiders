@@ -8,7 +8,7 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
 class HealthjobsnationwideSpider(scrapy.Spider):
     name = 'healthjobsnationwide'
-    custom_settings={ 'FEED_URI': "hjnationwide_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    #custom_settings={ 'FEED_URI': "hjnationwide_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
 
     def start_requests(self):
@@ -24,8 +24,8 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 url = post.css('h2 a::attr(href)').get() 
                 title = post.css('h2 a::text').get()
                 business_name = post.css('.recruiter-company-profile-job-organization::text').get()
-                date_posted = post.css('.date::text').get().replace(',','').replace('\n','').strip()
-                location = response.css('.location span::text').get()
+                date_posted = str(post.css('.date::text').get()).replace(',','').replace('\n','').strip()
+                location = post.css('.location span::text').get()
                 if(url is not None):
                     yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'location': location})
             except Exception as e:
@@ -47,7 +47,7 @@ class HealthjobsnationwideSpider(scrapy.Spider):
         if(findphone is not None):
             phone = findphone.group(0)
 
-        location = response.meta['location']
+        location = str(response.meta['location']).split()
         if(len(location) == 2):
             city = location[0]
             state = location[1].strip()
