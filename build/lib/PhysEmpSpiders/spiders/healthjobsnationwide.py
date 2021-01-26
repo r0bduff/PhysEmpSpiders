@@ -12,9 +12,9 @@ class HealthjobsnationwideSpider(scrapy.Spider):
     #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
 
     def start_requests(self):
-        lastpagenum = 120
+        lastpagenum = 675
         for i in range(lastpagenum):
-            next_page = 'https://www.healthjobsnationwide.com/jobs/physician?page=' + str(i)
+            next_page = 'https://www.healthjobsnationwide.com/jobs/physician-jobs?page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
 
@@ -24,6 +24,8 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 url = post.css('h2 a::attr(href)').get() 
                 title = post.css('h2 a::text').get()
                 business_name = post.css('.recruiter-company-profile-job-organization::text').get()
+                if business_name is None:
+                    business_name = post.css('.recruiter-company-profile-job-organization a::text').get()
                 date_posted = str(post.css('.date::text').get()).replace(',','').replace('\n','').strip()
                 location = post.css('.location span::text').get()
                 if(url is not None):

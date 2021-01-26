@@ -12,7 +12,7 @@ class HealthjobsnationwideSpider(scrapy.Spider):
     #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
 
     def start_requests(self):
-        lastpagenum = 120
+        lastpagenum = 675
         for i in range(lastpagenum):
             next_page = 'https://www.healthjobsnationwide.com/jobs/physician-jobs?page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
