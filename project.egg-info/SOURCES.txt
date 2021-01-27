@@ -18,6 +18,7 @@ PhysEmpSpiders/spiders/jamanetwork.py
 PhysEmpSpiders/spiders/locumJobsOnline.py
 PhysEmpSpiders/spiders/mdsearch.py
 PhysEmpSpiders/spiders/medicusfirm.py
+PhysEmpSpiders/spiders/medworking.py
 PhysEmpSpiders/spiders/nejmcareercenter.py
 PhysEmpSpiders/spiders/physiciancareerjobs.py
 PhysEmpSpiders/spiders/pmAgencyListings.py
