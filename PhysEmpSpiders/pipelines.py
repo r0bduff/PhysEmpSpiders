@@ -46,6 +46,9 @@ class PhysempspidersPipeline:
             #The above try returns a single row from the DB of the matching recruiter id
             #If that row exists then we will insert a new job.
             if(row is not None):
+                #format state name
+                item['job_state'] = self.Get_Abbrev(str(item['job_state']))
+                #update recruiter if email or number exists - add emp runs from this
                 if(item['contact_email'] is not None or item['contact_number'] is not None):
                     E_id = self.Update_Recruiter(row, item)
                 #add job with recruiter_id inserted into the job. row containts recruiter id
@@ -64,6 +67,8 @@ class PhysempspidersPipeline:
                     self.Insert_Job(row[0], item, E_id) 
             #If there is no row then a new recruiter is added to the database. 
             else:
+                #format state name
+                item['job_state'] = self.Get_Abbrev(str(item['job_state']))
                 #make new recruiter
                 id = self.Insert_Recruiter(item)
                 #make new job with new recruiter
@@ -81,7 +86,9 @@ class PhysempspidersPipeline:
                     #inserts a new job that does not contain a hospital_id
                     self.Insert_Job(id[0], item, E_id)
         else:
-            print('Job already exists in DB')
+            print('Updating Job')
+            item['job_state'] = self.Get_Abbrev(str(item['job_state']))
+            self.Update_Job_R(item)
         #Item is returned at the end dont ask me why 
         return item
 
@@ -111,11 +118,51 @@ class PhysempspidersPipeline:
 #@description: updates Job if url already exists.
     def Update_Job(self, item):
         try:
-            sql = "UPDATE JOBS"
-            self.cursor.execute(sql, ())
+            sql = """UPDATE Recruiter SET 
+                    Job_title= COALESCE(Job_title,%s), 
+                    Specialty= COALESCE(Specialty,%s), 
+                    Hospital_type= COALESCE(Hospital_type,%s), 
+                    Job_salary= COALESCE(Job_salary,%s), 
+                    Job_type= COALESCE(Job_type,%s), 
+                    Job_state= COALESCE(Job_state,%s), 
+                    Job_city= COALESCE(job_city,%s), 
+                    Job_address= COALESCE(Job_address,%s), 
+                    Date_posted= COALESCE(Date_posted,%s), 
+                    Date_scraped= COALESCE(Date_scraped,%s),
+                    Source_site= COALESCE(Source_site,%s),
+                    Description= COALESCE(Description,%s),
+                    Hospital_name= COALESCE(Hospital_name,%s),
+                    Ref_num= COALESCE(Ref_num,%s)
+                    WHERE URL=%s""" 
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url'])))
             self.conn.commit()
         except Exception as e:
             print("Error 11: Update Job Broke" + str(e))
+
+#@method: Update_Job_R
+#@description: updates by replacing all data in the row matching a url
+    def Update_Job_R(self, item):
+        try:
+            sql = """UPDATE Recruiter SET 
+                    Job_title= %s, 
+                    Specialty= %s, 
+                    Hospital_type= %s, 
+                    Job_salary= %s, 
+                    Job_type= %s, 
+                    Job_state= %s, 
+                    Job_city= %s, 
+                    Job_address= %s, 
+                    Date_posted= %s, 
+                    Date_scraped= %s,
+                    Source_site= %s,
+                    Description= %s,
+                    Hospital_name= %s,
+                    Ref_num= %s
+                    WHERE URL=%s""" 
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url'])))
+            self.conn.commit()
+        except Exception as e:
+            print("Error 12: Update Job Replace Broke" + str(e))
 
 #@method: Insert_Recruiter
 #@dexcription: inserts a new recruiter into the database.
@@ -279,7 +326,8 @@ class PhysempspidersPipeline:
         
 
 #@method Get_Abbrev
-#@description: Translates State Names to an abbreviation when given a state name
+#@description: Translates State Names to an abbreviation when given a state name.
+#               if given an already abbreviation state name then nothing is changed.
     def Get_Abbrev(self, state):
         us_state_abbrev = {
             'alabama': 'AL',
@@ -339,5 +387,21 @@ class PhysempspidersPipeline:
             'wisconsin': 'WI',
             'wyoming': 'WY'
         }
-        return us_state_abbrev[str(state).lower().strip()]
+        #check if state is already in abbreviated form
+        if(len(state) > 2):
+            abbrev = ''
+            try:
+                abbrev = us_state_abbrev[str(state).lower().strip()]
+            except:
+                abbrev = ''
+        else:
+            #flips the dictionary so short form is searchable
+            abbrev_us_state = dict(map(reversed, us_state_abbrev.items()))
+            #confirm abbreviation exists in the dict
+            if state in abbrev_us_state:
+                abbrev = state
+            else:
+                abbrev = ''
+
+        return abbrev
         
