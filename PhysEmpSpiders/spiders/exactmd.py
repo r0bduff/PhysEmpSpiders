@@ -1,13 +1,8 @@
-"""
-@name:exactmdspider.py
-@author: Rob Duff
-@description:Spider webcrawler for exactmd.com
-@not operational
-"""
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
 from datetime import datetime
+import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
@@ -52,9 +47,13 @@ class ExactmdSpider(scrapy.Spider):
 
         #find phone numbers
         phone = ''
+        ref = ''
         findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.details').get())
         if(findphone is not None):
             phone = findphone.group(0)
+            if(len(phone) == 7)
+                ref = phone
+                phone = ''
 
         location = str(response.meta['location']).split(',')
         if(len(location) == 2):
@@ -74,15 +73,15 @@ class ExactmdSpider(scrapy.Spider):
                 'job_state': state,
                 'job_city': city,
                 'job_address': '',
-                'date_posted': response.xpath("//meta[@itemprop='datePosted']/@content")[0].extract().replace('T', ' ').replace('+',' +'),
-                'date_scraped': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                'date_posted': datetime.strptime(response.xpath("//meta[@itemprop='datePosted']/@content")[0].extract().replace('T', ' ').replace('+',' +'), '%Y-%m-%d %H:%M:%S %z').strftime('%Y-%m-%d'),
+                'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'exactmd',
                 'url': response.meta['url'],
-                'description': response.css('.details::text').get(),
+                'description': str(response.css('.details').get()),
                 'business_type': response.meta['business_type'],
                 'business_name': response.css('.col-md-6 .job-detail-label+ span::text').get(),
                 'contact_name': '',
-                'contact_number': number,
+                'contact_number': phone,
                 'contact_email': email,
                 'business_state': '',
                 'business_city': '',
@@ -91,11 +90,11 @@ class ExactmdSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
-                'Ref_num': '',
+                'Ref_num': ref,
             })
             yield job
         
-        except:
+        except Exception as e:
             job = Item({
                 'title': '',
                 'specialty': response.meta['specialty'],
@@ -106,7 +105,7 @@ class ExactmdSpider(scrapy.Spider):
                 'job_city': '',
                 'job_address': '',
                 'date_posted': '',
-                'date_scraped': datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+                'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'exactmd',
                 'url': response.meta['url'],
                 'description': '',
@@ -124,6 +123,7 @@ class ExactmdSpider(scrapy.Spider):
                 'hospital_id': '',
                 'Ref_num': '',
             })
+            print(str(e))
             yield job
     
 
