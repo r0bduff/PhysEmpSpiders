@@ -17,10 +17,12 @@ PhysEmpSpiders/spiders/hospitalrecruiting.py
 PhysEmpSpiders/spiders/jamanetwork.py
 PhysEmpSpiders/spiders/locumJobsOnline.py
 PhysEmpSpiders/spiders/mdsearch.py
+PhysEmpSpiders/spiders/medcareers.py
 PhysEmpSpiders/spiders/medicusfirm.py
 PhysEmpSpiders/spiders/medworking.py
 PhysEmpSpiders/spiders/nejmcareercenter.py
 PhysEmpSpiders/spiders/physiciancareerjobs.py
+PhysEmpSpiders/spiders/physiciansjobsplus.py
 PhysEmpSpiders/spiders/pmAgencyListings.py
 PhysEmpSpiders/spiders/pmHospitalListings.py
 PhysEmpSpiders/spiders/radworking.py

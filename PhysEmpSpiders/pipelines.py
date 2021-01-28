@@ -136,7 +136,7 @@ class PhysempspidersPipeline:
                     Hospital_name= COALESCE(Hospital_name,%s),
                     Ref_num= COALESCE(Ref_num,%s)
                     WHERE URL=%s""" 
-            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url'])))
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
             self.conn.commit()
         except Exception as e:
             print("Error 11: Update Job Broke" + str(e))
@@ -161,7 +161,7 @@ class PhysempspidersPipeline:
                     Hospital_name= %s,
                     Ref_num= %s
                     WHERE URL=%s""" 
-            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url'])))
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
             self.conn.commit()
         except Exception as e:
             print("Error 12: Update Job Replace Broke" + str(e))
