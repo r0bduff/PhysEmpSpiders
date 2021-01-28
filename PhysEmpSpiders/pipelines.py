@@ -46,6 +46,8 @@ class PhysempspidersPipeline:
             #The above try returns a single row from the DB of the matching recruiter id
             #If that row exists then we will insert a new job.
             if(row is not None):
+                #fix email
+                item['contact_email'] = str(item['contact_email'].strip('.'))
                 #format state name
                 if(item['job_state'] is not None):
                     item['job_state'] = self.Get_Abbrev(str(item['job_state']))
@@ -68,6 +70,8 @@ class PhysempspidersPipeline:
                     self.Insert_Job(row[0], item, E_id) 
             #If there is no row then a new recruiter is added to the database. 
             else:
+                #fix email
+                item['contact_email'] = str(item['contact_email'].strip('.'))
                 #format state name
                 if(item['job_state'] is not None):
                     item['job_state'] = self.Get_Abbrev(str(item['job_state']))
