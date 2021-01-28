@@ -277,4 +277,67 @@ class PhysempspidersPipeline:
         except Exception as e:
             print('Error 11: Update_Emp broke' + str(e))
         
+
+#@method Get_Abbrev
+#@description: Translates State Names to an abbreviation when given a state name
+    def Get_Abbrev(self, state):
+        us_state_abbrev = {
+            'alabama': 'AL',
+            'alaska': 'AK',
+            'american Samoa': 'AS',
+            'arizona': 'AZ',
+            'arkansas': 'AR',
+            'california': 'CA',
+            'colorado': 'CO',
+            'connecticut': 'CT',
+            'delaware': 'DE',
+            'district of Columbia': 'DC',
+            'florida': 'FL',
+            'georgia': 'GA',
+            'guam': 'GU',
+            'hawaii': 'HI',
+            'idaho': 'ID',
+            'illinois': 'IL',
+            'indiana': 'IN',
+            'iowa': 'IA',
+            'kansas': 'KS',
+            'kentucky': 'KY',
+            'louisiana': 'LA',
+            'maine': 'ME',
+            'maryland': 'MD',
+            'massachusetts': 'MA',
+            'michigan': 'MI',
+            'minnesota': 'MN',
+            'mississippi': 'MS',
+            'missouri': 'MO',
+            'montana': 'MT',
+            'nebraska': 'NE',
+            'nevada': 'NV',
+            'new Hampshire': 'NH',
+            'new Jersey': 'NJ',
+            'new Mexico': 'NM',
+            'new York': 'NY',
+            'north Carolina': 'NC',
+            'north Dakota': 'ND',
+            'northern Mariana Islands':'MP',
+            'ohio': 'OH',
+            'oklahoma': 'OK',
+            'oregon': 'OR',
+            'pennsylvania': 'PA',
+            'puerto Rico': 'PR',
+            'rhode Island': 'RI',
+            'south Carolina': 'SC',
+            'south Dakota': 'SD',
+            'tennessee': 'TN',
+            'texas': 'TX',
+            'utah': 'UT',
+            'vermont': 'VT',
+            'virgin Islands': 'VI',
+            'virginia': 'VA',
+            'washington': 'WA',
+            'west Virginia': 'WV',
+            'wisconsin': 'WI',
+            'wyoming': 'WY'
+        }
+        return us_state_abbrev[str(state).lower().strip()]
         

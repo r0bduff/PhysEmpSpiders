@@ -13,7 +13,7 @@ class JamanetworkSpider(scrapy.Spider):
     
     start_urls = [client.scrapyGet(url = url_link)]
 
-    #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
+    #custom_settings={ 'FEED_URI': "data/jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
         lastpagenum = 338
         for i in range(lastpagenum):
