@@ -5,6 +5,7 @@ PhysEmpSpiders/items.py
 PhysEmpSpiders/middlewares.py
 PhysEmpSpiders/pipelines.py
 PhysEmpSpiders/settings.py
+PhysEmpSpiders/us_state_abbrev.py
 PhysEmpSpiders/spiders/PracticeMatch.py
 PhysEmpSpiders/spiders/__init__.py
 PhysEmpSpiders/spiders/adventhealth.py
