@@ -51,7 +51,7 @@ class ExactmdSpider(scrapy.Spider):
         findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.details').get())
         if(findphone is not None):
             phone = findphone.group(0)
-            if(len(phone) == 7)
+            if(len(phone) == 7):
                 ref = phone
                 phone = ''
 
