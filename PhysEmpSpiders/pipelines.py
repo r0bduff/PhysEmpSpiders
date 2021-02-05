@@ -8,7 +8,8 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import pymssql
-
+import nltk
+from nltk.corpus import stopwords
 
 #https://stackoverflow.com/questions/43266482/scrapy-how-to-crawl-website-store-data-in-microsoft-sql-server-database/43266807
 
@@ -249,34 +250,76 @@ class PhysempspidersPipeline:
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
         
-        if(item['business_name'] is not None and hospital is None):
-            try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE NAME=%s AND CITY=%s", (item['business_name'], item['job_city']))
-                hospital = self.cursor.fetchone()
-            except Exception as e:
-                print('Error 7: Check_hospital broke' + item['url'] + str(e))
-
-        if(item['business_website'] is not None and hospital is None):
-            try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE WEBSITE=%s", (item['business_website']))
-                hospital = self.cursor.fetchone()
-            except Exception as e:
-                print('Error 7: Check_hospital broke' + item['url'] + str(e))
-    
-        if(item['contact_number'] is not None and hospital is None):
-            try:
-                self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE TELEPHONE=%s", (item['contact_number']))
-                hospital = self.cursor.fetchone()
-            except Exception as e:
-                print('Error 7: Check_hospital broke' + item['url'] + str(e))
-        
         if(item['job_address'] is not None and hospital is None):
             try:
                 self.cursor.execute("SELECT ID, ADDRESS, CITY, STATE, NAME FROM Hospitals WHERE ADDRESS=%s", (item['job_address']))
                 hospital = self.cursor.fetchone()
             except Exception as e:
                 print('Error 7: Check_hospital broke' + item['url'] + str(e))
+        
+        if(hospital is None):
+            #set up stopwords
+            more_stopwords = set(())
+            stoplist = set(stopwords.words('english')) | more_stopwords
+            #select hospitals in the same location as the job
+            try:
+                sqlHos = "SELECT NAME, CITY, STATE, ID FROM Hospitals WHERE City = %s AND State = %s"
+                self.cursor.execute(sqlHos, (job[2], job[1]))
+                hospitals = cursor.fetchall()
+            except Exception as e:
+                print('Error 7: Check_hospital broke' + item['url'] + str(e))
 
+            #of those hospitals lets try to narrow down the right one from the description
+            found = [] #to hold the best matching
+            desc = str(item['description']).lower().replace("’","").replace("'","").replace(">"," ").replace("<", " ")
+            for h in hospitals:
+                name = str(h[0]).lower() #lowercase and save hospitalname
+                testArr = name.replace("'",'').split(' ') #array of strings 
+                testArr.append(name) #add the name to the end of test array
+                b = True #test variable b (bool)
+                cnt = 0 #counts total of all ids
+                for t in testArr:
+                    if t not in stoplist:
+                        t = " " + t + " "
+                        ids = []
+                        #print(t)
+                        ids.append(desc.count(t))
+                        cnt += desc.count(t)
+                        for i in ids:
+                            #print(i)
+                            if t.strip() == testArr[len(testArr) - 1]:
+                                if i != 0:
+                                    cnt += 1000
+                                    #print(cnt)
+                            else:
+                                if i == 0:
+                                    b = False #id does not exist
+                if b == True:
+                    found.append([name, cnt, h[3]])
+            #for loop ends
+            #check how many results were found
+            out = ["", 0, None]
+            #if one item has been found then that has to be it
+            if len(found) == 1:
+                for f in found:
+                    out[0] = f[0]
+                    out[1] = f[1]
+                    out[2] = f[2]       
+            #if there are more than one then lets see which has a higher cnt         
+            elif len(found) > 1: 
+                for f in found:
+                    if f[1] > out[1]:
+                        out[0] = f[0]
+                        out[1] = f[1]
+                        out[2] = f[2]
+            #if we did find something then lets grab that hospitals info.
+            if out[2] is not None:
+                try:
+                    cursor.execute("SELECT NAME, CITY, STATE, ID FROM Hospitals WHERE ID=%s", (out[2]))
+                    hospital = self.cursor.fetchone()
+                except Exception as e:
+                    print('Error 7: Check_hospital broke' + item['url'] + str(e))
+        #return hospital variable at the end, None if nothing was found or contains a list of Name, City, State, ID
         return hospital
 
 #@method Insert_Emp
