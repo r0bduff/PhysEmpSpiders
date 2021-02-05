@@ -120,7 +120,7 @@ class PhysempspidersPipeline:
 #@description: updates Job if url already exists.
     def Update_Job(self, item):
         try:
-            sql = """UPDATE Recruiter SET 
+            sql = """UPDATE Jobs SET 
                     Job_title= COALESCE(Job_title,%s), 
                     Specialty= COALESCE(Specialty,%s), 
                     Hospital_type= COALESCE(Hospital_type,%s), 
@@ -145,7 +145,7 @@ class PhysempspidersPipeline:
 #@description: updates by replacing all data in the row matching a url
     def Update_Job_R(self, item):
         try:
-            sql = """UPDATE Recruiter SET 
+            sql = """UPDATE Jobs SET 
                     Job_title= %s, 
                     Specialty= %s, 
                     Hospital_type= %s, 
