@@ -134,13 +134,15 @@ class PhysempspidersPipeline:
             Job_id = self.cursor.fetchone()
         except Exception as e:
             print("Error 12.1: find job ID broke" + str(e))
-        
-        try:
-            sql = "INSERT INTO Job_Time_Item(Job_Id, Date_scraped, Date_posted) VALUES (%s,%s,%s)"
-            self.cursor.execute(sql, (Job_id, item["date_scraped"], item["date_posted"]))
-            self.conn.commit()
-        except Exception as e:
-            print("Error 13: Insert Time Broke:" + str(e))
+        if Job_id is not None:
+            try:
+                sql = "INSERT INTO Job_Time_Item(Job_Id, Date_scraped, Date_posted) VALUES (%s,%s,%s)"
+                self.cursor.execute(sql, (Job_id, item["date_scraped"], item["date_posted"]))
+                self.conn.commit()
+            except Exception as e:
+                print("Error 13: Insert Time Broke:" + str(e))
+        else:
+            print("I COULD NOT FIND JOB")
 
 #@method: Update_Job
 #@description: updates Job if url already exists.
