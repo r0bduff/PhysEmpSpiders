@@ -104,22 +104,43 @@ class PhysempspidersPipeline:
     def Insert_Job_H(self, R_id, item, Emp_Id):
         #make new job with hospital
         try:
-            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Date_posted, Date_scraped, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['url'], item['description'], item['hospital_id'], item['hospital_name'], item['Ref_num']))
+            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_id'], item['hospital_name'], item['Ref_num']))
             self.conn.commit()
         except Exception as e:
-                print('Error 8: Insert Job Hospital Broke' + item['url'] + str(e))
+            print('Error 8: Insert Job Hospital Broke' + item['url'] + str(e))
+        #add time item to record last scrape
+        self.Insert_Time(item)
 
 #@method:Insert_Job
 #@description: inserts a new job into the database. Must be given a recruiter id as an integer
     def Insert_Job(self, R_id, item, Emp_Id):
         #make new job
         try:
-            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Date_posted, Date_scraped, Source_site, URL, Description, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num']))
+            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num']))
             self.conn.commit()
         except Exception as e:
-                print('Error 3: Insert Job Broke' + item['url'] + ' Date:' + item['date_scraped'] + ' Error:' + str(e))
+            print('Error 3: Insert Job Broke' + item['url'] + ' Date:' + item['date_scraped'] + ' Error:' + str(e))
+        #add time item to record last scrape
+        self.Insert_Time(item)
+
+#@method: Insert_Time
+#@description: adds a time row to Job_Time_Item to track when an ad was scraped.
+    def Insert_Time(self, item): 
+        try:
+            sqlID = "SELECT Job_Id FROM Jobs WHERE URL=%s"
+            self.cursor.execute(sqlID, (item["URL"]))
+            Job_id = self.cursor.fetchone()
+        except Exception as e:
+            print("Error 12.1: find job ID broke" + str(e))
+        
+        try:
+            sql = "INSERT INTO Job_Time_Item(Job_Id, Date_scraped, Date_posted) VALUES (%s,%s,%s)"
+            self.cursor.execute(sql, (Job_id, item["date_scraped"], item["date_posted"]))
+            self.conn.commit()
+        except Exception as e:
+            print("Error 13: Insert Time Broke:" + str(e))
 
 #@method: Update_Job
 #@description: updates Job if url already exists.
@@ -134,17 +155,17 @@ class PhysempspidersPipeline:
                     Job_state= COALESCE(Job_state,%s), 
                     Job_city= COALESCE(job_city,%s), 
                     Job_address= COALESCE(Job_address,%s), 
-                    Date_posted= COALESCE(Date_posted,%s), 
-                    Date_scraped= COALESCE(Date_scraped,%s),
                     Source_site= COALESCE(Source_site,%s),
                     Description= COALESCE(Description,%s),
                     Hospital_name= COALESCE(Hospital_name,%s),
                     Ref_num= COALESCE(Ref_num,%s)
                     WHERE URL=%s""" 
-            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
             self.conn.commit()
         except Exception as e:
             print("Error 11: Update Job Broke" + str(e))
+        #add time item to record last scrape
+        self.Insert_Time(item)
 
 #@method: Update_Job_R
 #@description: updates by replacing all data in the row matching a url
@@ -159,17 +180,17 @@ class PhysempspidersPipeline:
                     Job_state= %s, 
                     Job_city= %s, 
                     Job_address= %s, 
-                    Date_posted= %s, 
-                    Date_scraped= %s,
                     Source_site= %s,
                     Description= %s,
                     Hospital_name= %s,
                     Ref_num= %s
                     WHERE URL=%s""" 
-            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['date_posted'], item['date_scraped'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
             self.conn.commit()
         except Exception as e:
             print("Error 12: Update Job Replace Broke" + str(e))
+        #add time item to record last scrape
+        self.Insert_Time(item)
 
 #@method: Insert_Recruiter
 #@dexcription: inserts a new recruiter into the database.
