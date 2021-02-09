@@ -32,6 +32,17 @@ class AdventhealthSpider(scrapy.Spider):
 
     def parse_listing(self, response):
         print('---------------------CHECKING INTERIOR PAGE--------------------------')
+        #find emails
+        email = ''
+        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('#jdp-job-description-section').get())
+        if(findemail is not None):
+            email = findemail.group(0)
+
+        #find phone numbers
+        phone = ''
+        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('#jdp-job-description-section').get())
+        if(findphone is not None):
+            phone = findphone.group(0)
         
         try:
             job = Item({ 
@@ -48,18 +59,19 @@ class AdventhealthSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'adventhealth',
                 'url': response.meta['url'],
-                'description': '',#response.css('#jdp-job-description-section :nth-child(1)::text').extract(),
+                'description': response.css('#jdp-job-description-section .content-card').extract(),
                 'business_type': 'Hospital',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
-                'contact_number': '',
-                'contact_email': '',
+                'contact_number': phone,
+                'contact_email': email,
                 'business_state': response.meta['state'],
                 'business_city': response.meta['city'],
                 'business_address': '',
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': response.css('.job-id .snapshot-text .secondary-text-color::text').get(),
             })
             yield job
 
@@ -90,6 +102,7 @@ class AdventhealthSpider(scrapy.Spider):
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
             })
             yield job
 
