@@ -2,7 +2,7 @@ import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
 from datetime import datetime
-from scrapy.exceptions import DontCloseSpider
+import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
@@ -13,7 +13,12 @@ class AdventhealthSpider(scrapy.Spider):
 
     url_link = 'https://jobs.adventhealth.com/en-US/search?pagenumber=1'
     
-    start_urls = [client.scrapyGet(url = url_link)]
+    #start_urls = [client.scrapyGet(url = url_link)]
+    def start_requests(self):
+        lastpagenum = 80
+        for i in range(lastpagenum):
+            next_page = 'https://jobs.adventhealth.com/en-US/search?pagenumber=' + str(i)
+            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse(self, response):
         for post in response.css('.job-result'):
@@ -25,10 +30,10 @@ class AdventhealthSpider(scrapy.Spider):
             date_posted = post.css('.job-result-date-posted-cell::text').get().replace('\n', '').strip()
             yield scrapy.Request(client.scrapyGet(url = url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'city': city, 'state': state})
 
-        next_page = response.css('.next-page-caret::attr(href)').get()
-        if(next_page is not None):   
-            next_page = 'https://jobs.adventhealth.com' + next_page
-            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+        #next_page = response.css('.next-page-caret::attr(href)').get()
+        #if(next_page is not None):   
+            #next_page = 'https://jobs.adventhealth.com' + next_page
+            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):
         print('---------------------CHECKING INTERIOR PAGE--------------------------')
