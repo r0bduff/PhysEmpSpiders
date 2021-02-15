@@ -47,13 +47,17 @@ class PhysempspidersPipeline:
             #The above try returns a single row from the DB of the matching recruiter id
             #If that row exists then we will insert a new job.
             if(row is not None):
-                #fix email
-                item['contact_email'] = str(item['contact_email'].strip('.'))
                 #format state name
                 if(item['job_state'] is not None):
                     item['job_state'] = self.Get_Abbrev(str(item['job_state']))
+                    #get location id if city AND state not null
+                    if(item['job_city'] is not None):
+                        item['Loc_id'] = self.Get_Loc(item)
                 #update recruiter if email or number exists - add emp runs from this
                 if(item['contact_email'] is not None or item['contact_number'] is not None):
+                    #fix email
+                    if item['contact_email'] is not None:
+                        item['contact_email'] = str(item['contact_email']).strip('.')
                     E_id = self.Update_Recruiter(row, item)
                 #add job with recruiter_id inserted into the job. row containts recruiter id
                 #check if hospital info lines up with db entry. Update job info if necessary.
@@ -76,6 +80,9 @@ class PhysempspidersPipeline:
                 #format state name
                 if(item['job_state'] is not None):
                     item['job_state'] = self.Get_Abbrev(str(item['job_state']))
+                    #get location id if city AND state not null
+                    if(item['job_city'] is not None):
+                        item['Loc_id'] = self.Get_Loc(item)
                 #make new recruiter
                 id = self.Insert_Recruiter(item)
                 #make new job with new recruiter
@@ -104,8 +111,8 @@ class PhysempspidersPipeline:
     def Insert_Job_H(self, R_id, item, Emp_Id):
         #make new job with hospital
         try:
-            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_id'], item['hospital_name'], item['Ref_num']))
+            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, Loc_id) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id']))
             self.conn.commit()
         except Exception as e:
             print('Error 8: Insert Job Hospital Broke' + item['url'] + str(e))
@@ -117,8 +124,8 @@ class PhysempspidersPipeline:
     def Insert_Job(self, R_id, item, Emp_Id):
         #make new job
         try:
-            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_name, Ref_num) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num']))
+            sql = "INSERT INTO Jobs(Recruiter_Id, Emp_Id, Job_title, Specialty, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_name, Ref_num, Loc_id) VALUES (%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            self.cursor.execute(sql, (R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num'], item['Loc_id']))
             self.conn.commit()
         except Exception as e:
             print('Error 3: Insert Job Broke' + item['url'] + ' Date:' + item['date_scraped'] + ' Error:' + str(e))
@@ -128,9 +135,10 @@ class PhysempspidersPipeline:
 #@method: Insert_Time
 #@description: adds a time row to Job_Time_Item to track when an ad was scraped.
     def Insert_Time(self, item): 
+        Job_id = None
         try:
             sqlID = "SELECT Job_Id FROM Jobs WHERE URL=%s"
-            self.cursor.execute(sqlID, (item["URL"]))
+            self.cursor.execute(sqlID, (item["url"]))
             Job_id = self.cursor.fetchone()
         except Exception as e:
             print("Error 12.1: find job ID broke" + str(e))
@@ -160,9 +168,10 @@ class PhysempspidersPipeline:
                     Source_site= COALESCE(Source_site,%s),
                     Description= COALESCE(Description,%s),
                     Hospital_name= COALESCE(Hospital_name,%s),
-                    Ref_num= COALESCE(Ref_num,%s)
+                    Ref_num= COALESCE(Ref_num,%s),
+                    Loc_id= COALESCE(Loc_id,%s)
                     WHERE URL=%s""" 
-            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['Loc_id'], item['url']))
             self.conn.commit()
         except Exception as e:
             print("Error 11: Update Job Broke" + str(e))
@@ -185,9 +194,10 @@ class PhysempspidersPipeline:
                     Source_site= %s,
                     Description= %s,
                     Hospital_name= %s,
-                    Ref_num= %s
+                    Ref_num= %s,
+                    Loc_id= %s
                     WHERE URL=%s""" 
-            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'], item['url']))
+            self.cursor.execute(sql, (item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['description'], item['hospital_name'], item['Ref_num'],item['Loc_id'], item['url']))
             self.conn.commit()
         except Exception as e:
             print("Error 12: Update Job Replace Broke" + str(e))
@@ -288,64 +298,68 @@ class PhysempspidersPipeline:
             #set up stopwords
             more_stopwords = set(())
             stoplist = set(stopwords.words('english')) | more_stopwords
+            hospitals = None
             #select hospitals in the same location as the job
-            try:
-                sqlHos = "SELECT NAME, CITY, STATE, ID FROM Hospitals WHERE City = %s AND State = %s"
-                self.cursor.execute(sqlHos, (job[2], job[1]))
-                hospitals = cursor.fetchall()
-            except Exception as e:
-                print('Error 7: Check_hospital broke' + item['url'] + str(e))
+            if item['Loc_id'] is not None:
+                try:
+                    sqlHos = "SELECT NAME, CITY, STATE, ID FROM Hospitals WHERE City = %s AND State = %s"
+                    self.cursor.execute(sqlHos, (item["job_city"], item["job_state"]))
+                    hospitals = self.cursor.fetchall()
+                except Exception as e:
+                    print('Error 7: Check_hospital broke' + item['url'] + str(e))
 
             #of those hospitals lets try to narrow down the right one from the description
             found = [] #to hold the best matching
             desc = str(item['description']).lower().replace("’","").replace("'","").replace(">"," ").replace("<", " ")
-            for h in hospitals:
-                name = str(h[0]).lower() #lowercase and save hospitalname
-                testArr = name.replace("'",'').split(' ') #array of strings 
-                testArr.append(name) #add the name to the end of test array
-                b = True #test variable b (bool)
-                cnt = 0 #counts total of all ids
-                for t in testArr:
-                    if t not in stoplist:
-                        t = " " + t + " "
-                        ids = []
-                        #print(t)
-                        ids.append(desc.count(t))
-                        cnt += desc.count(t)
-                        for i in ids:
-                            #print(i)
-                            if t.strip() == testArr[len(testArr) - 1]:
-                                if i != 0:
-                                    cnt += 1000
-                                    #print(cnt)
-                            else:
-                                if i == 0:
-                                    b = False #id does not exist
-                if b == True:
-                    found.append([name, cnt, h[3]])
-            #for loop ends
-            #check how many results were found
-            out = ["", 0, None]
-            #if one item has been found then that has to be it
-            if len(found) == 1:
-                for f in found:
-                    out[0] = f[0]
-                    out[1] = f[1]
-                    out[2] = f[2]       
-            #if there are more than one then lets see which has a higher cnt         
-            elif len(found) > 1: 
-                for f in found:
-                    if f[1] > out[1]:
+
+            if hospitals is not None:
+                for h in hospitals:
+                    name = str(h[0]).lower() #lowercase and save hospitalname
+                    testArr = name.replace("'",'').split(' ') #array of strings 
+                    testArr.append(name) #add the name to the end of test array
+                    b = True #test variable b (bool)
+                    cnt = 0 #counts total of all ids
+                    for t in testArr:
+                        if t not in stoplist:
+                            t = " " + t + " "
+                            ids = []
+                            #print(t)
+                            ids.append(desc.count(t))
+                            cnt += desc.count(t)
+                            for i in ids:
+                                #print(i)
+                                if t.strip() == testArr[len(testArr) - 1]:
+                                    if i != 0:
+                                        cnt += 1000
+                                        #print(cnt)
+                                else:
+                                    if i == 0:
+                                        b = False #id does not exist
+                    if b == True:
+                        found.append([name, cnt, h[3]])
+                #for loop ends
+                #check how many results were found
+                out = ["", 0, None]
+                #if one item has been found then that has to be it
+                if len(found) == 1:
+                    for f in found:
                         out[0] = f[0]
                         out[1] = f[1]
-                        out[2] = f[2]
-            #if we did find something then lets grab that hospitals info.
-            if out[2] is not None:
-                try:
-                    cursor.execute("SELECT NAME, CITY, STATE, ID FROM Hospitals WHERE ID=%s", (out[2]))
-                    hospital = self.cursor.fetchone()
-                except Exception as e:
-                    print('Error 7: Check_hospital broke' + item['url'] + str(e))
+                        out[2] = f[2]       
+                #if there are more than one then lets see which has a higher cnt         
+                elif len(found) > 1: 
+                    for f in found:
+                        if f[1] > out[1]:
+                            out[0] = f[0]
+                            out[1] = f[1]
+                            out[2] = f[2]
+                #if we did find something then lets grab that hospitals info.
+                if out[2] is not None:
+                    try:
+                        self.cursor.execute("SELECT NAME, CITY, STATE, ID FROM Hospitals WHERE ID=%s", (out[2]))
+                        hospital = self.cursor.fetchone()
+                    except Exception as e:
+                        print('Error 7: Check_hospital broke' + item['url'] + str(e))
         #return hospital variable at the end, None if nothing was found or contains a list of Name, City, State, ID
         return hospital
 
@@ -396,6 +410,15 @@ class PhysempspidersPipeline:
         except Exception as e:
             print('Error 11: Update_Emp broke' + str(e))
         
+#@method Get_Loc
+    def Get_Loc(self, item):
+        loc_id = None
+        try:
+            self.cursor.execute("SELECT Locations.loc_id FROM Locations WHERE state_id = %s AND city_ascii=%s", (item["job_state"], item['job_city']))
+            loc_id = self.cursor.fetchone()
+        except Exception as e:
+            print("Error 14: Get_loc broke" + str(e))
+        return loc_id
 
 #@method Get_Abbrev
 #@description: Translates State Names to an abbreviation when given a state name.

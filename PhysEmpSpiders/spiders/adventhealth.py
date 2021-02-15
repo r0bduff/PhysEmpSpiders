@@ -66,7 +66,7 @@ class AdventhealthSpider(scrapy.Spider):
                 'url': response.meta['url'],
                 'description': response.css('#jdp-job-description-section .content-card').extract(),
                 'business_type': 'Hospital',
-                'business_name': response.meta['business_name'],
+                'business_name': 'AdventHealth',
                 'contact_name': '',
                 'contact_number': phone,
                 'contact_email': email,
@@ -77,10 +77,11 @@ class AdventhealthSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': response.css('.job-id .snapshot-text .secondary-text-color::text').get(),
+                'Loc_id': '',
             })
             yield job
 
-        except:
+        except Exception as e:
             job = Item({ 
                 'title': response.meta['title'],
                 'specialty': '',
@@ -108,6 +109,8 @@ class AdventhealthSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
             })
+            print(e)
             yield job
 
