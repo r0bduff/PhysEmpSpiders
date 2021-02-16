@@ -7,6 +7,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+from services.connections import sqlserver_connection as conn
 import pymssql
 import nltk
 from nltk.corpus import stopwords
