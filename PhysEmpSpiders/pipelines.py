@@ -5,9 +5,10 @@
 """
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-from services.routes import routes
+#from services.routes import Routes
 import nltk
 from nltk.corpus import stopwords
+import pymssql
 
 #https://stackoverflow.com/questions/43266482/scrapy-how-to-crawl-website-store-data-in-microsoft-sql-server-database/43266807
 
@@ -17,7 +18,7 @@ from nltk.corpus import stopwords
 class PhysempspidersPipeline:
     #set up a new route to the db containing all sql queries
     def __init__(self):
-        self.route = routes
+        self.route = Routes()
     #Called whenever an item object is yeilded. Handles all logic for sending data to the DB
     def process_item(self, item, spider):
         #Gives empty values a null value so they can go into the db in a nice way. Storing as '' is no bueno.
@@ -28,7 +29,7 @@ class PhysempspidersPipeline:
         if(self.Check_url(item['url'])==False):
             E_id = None
             #get the recruiter information matching the business name found
-            row = route.spSelectBusinessName(item['business_name'])
+            row = self.route.spSelectBusinessName(item['business_name'])
 
             #The above try returns a single row from the DB of the matching recruiter id
             #If that row exists then we will insert a new job.
@@ -96,7 +97,7 @@ class PhysempspidersPipeline:
 #@description: inserts a new job into the database. Must be given a recruiter id as an integer
     def Insert_Job(self, R_id, item, Emp_Id):
         #Insert new job
-        self.route.spInsertJob(R_id, Emp_Id, item['title'], item['specialty'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num'], item['Loc_id'])
+        self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'], item['hospital_name'], item['Ref_num'], item['Loc_id'])
         #add time item to record last scrape
         self.Insert_Time(item)
 
@@ -226,6 +227,42 @@ class PhysempspidersPipeline:
         #return hospital variable at the end, None if nothing was found or contains a list of Name, City, State, ID
         return hospital
 
+#@method Check_Specialty
+#@description: Returns a Specialty Id that matches the given Specialty. Returns Null if no Specialty is given
+    def Check_Specialty(self, item):
+        Specialty_Id = None #default return value
+        if item['Specialty'] is not None:
+            match = self.route.spSelectSpecialty(item['Specialty']) #returns exact matches to the given specialty
+            matching = []
+            if match is not None:
+                Specialty_Id = match[0]
+            else:
+                words = str(item['Specialty']).replace(":",'').replace(',','').replace("'","").strip().split(' ')
+                matching = self.route.spSelectSpecialtyLike(words[0]) #returns any similar matches to the first word in the specialty
+                found = []
+                #for each matching specialty given them a score based on how many word match our specialty
+                for m in matching:
+                    cnt = 0
+                    for w in words:
+                        if w in m[1]:
+                            cnt += 1
+                    found.append([m[0], cnt])
+                #check system same as Hospital Checker
+                out = ["None", 0]
+                if len(found) > 1:
+                    for f in found:
+                        if f[1] > out[1]:
+                            out[0] = f[0]
+                            out[1] = f[1]
+                    if out[1] > 1:
+                        Specialty_Id = out[0]
+                elif len(found) == 1:
+                    if f[1] > 1:
+                        out[0] = f[0]
+                        out[1] = f[1]
+                        Specialty_Id = out[0]
+        return Specialty_Id #return a specialty id matches about 80% of the time
+    
 #@method Insert_Emp
     def Insert_Emp(self, Recruiter, item):
         number = None
@@ -338,3 +375,207 @@ class PhysempspidersPipeline:
 
         return abbrev
         
+#class for the primary sql server
+class sqlserver_connection:
+#connection parameters for the primary sql server
+    def __init__(self):
+        self.host = "70.179.173.208"
+        self.port = 49172
+        self.user = "rob"
+        self.password = "verysecurepassword"
+        self.db = "physemp"
+
+#creates connection to the db
+    def __connect__(self):
+        self.conn = pymssql.connect(host=self.host, user=self.user, password=self.password, database=self.db, port=self.port, charset='utf8')
+        self.cur = self.conn.cursor()
+
+#disconnects connection from the db
+    def __disconnect__(self):
+        self.conn.close()
+
+#runs sql commands requiring a value to be returned.
+    def fetch(self, sql):
+        self.__connect__()
+        result = None
+        try:
+            self.cur.execute(sql)
+            result = self.cur.fetchall()
+        except Exception as e:
+            print("Connection Fetch Failed: " + str(e))
+        self.__disconnect__()
+        return result
+
+#runs sql commands that do no require a return value
+    def execute(self, sql):
+        self.__connect__()
+        try:
+            self.cur.execute(sql)
+        except Exception as e:
+            print("Connection Execute Failed: " + str(e))
+        self.__disconnect__()
+
+#Class for all query routes to the server
+class Routes:
+    def __init__(self):
+        self.conn = sqlserver_connection()
+        
+    def spInsertEmp(self, Recruiter_Id, Emp_name, Emp_email, Emp_number):
+        sql = f"EXEC spInsertEmp @Recruiter_Id = {Recruiter_Id}, @Emp_name = {Emp_name}, @Emp_email = {Emp_email}, @Emp_number = {Emp_number}"
+        self.conn.execute(sql)
+    
+    def spInsertJob(self, Recruiter_Id, Emp_id, Job_title, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, loc_id, Specialty_Id):
+        sql = f"""EXEC spInsertJob 
+                    @Recruiter_Id={Recruiter_Id}, 
+                    @Emp_Id={Emp_Id}, 
+                    @Job_title={Job_title}, 
+                    @Hospital_type={Hospital_type}, 
+                    @Job_salary={Job_salary}, 
+                    @Job_type={Job_type},
+                    @Job_state={Job_state},
+                    @Job_city={Job_city}, 
+                    @Job_address={Job_address}, 
+                    @Source_site={Source_site}, 
+                    @URL={URL}, 
+                    @Description={Description}, 
+                    @Hospital_id={Hospital_id}, 
+                    @Hospital_name={Hospital_name},
+                    @Ref_num={Ref_num}, 
+                    @Loc_id={loc_id},
+                    @Specialty_Id={Specialty_Id}"""
+        self.conn.execute(sql)
+
+    def spInsertJobTimeItem(self, Job_Id, Date_scraped, Date_posted):
+        sql = f"EXEC spInsertJobTimeItem @Job_Id={Job_Id}, @Date_scraped={Date_scraped}, @Date_posted={Date_posted}"
+        self.conn.execute(sql)
+    
+    def spInsertRecruiter(self, Business_type, Business_name, Contact_name, Contact_email, Business_state, Business_city, Business_address, Business_zip, Business_website, hospital_id):
+        sql = f"""EXEC spInsertRecruiter
+                @Business_type = {Business_type},
+                @Business_name = {Business_name},
+                @Contact_name = {Contact_name},
+                @Contact_email = {Contact_email},
+                @Business_state = {Business_state},
+                @Business_city = {Business_city},
+                @Business_address = {Business_address},
+                @Business_zip = {Business_zip},
+                @Business_website = {Business_website},
+                @hospital_id = {Hospital_id}"""
+        self.conn.execute(sql)
+    
+    def spSelectBusinessName(self, Business_name):
+        sql = f"EXEC spSelectBusinessName @Business_name = {Business_name}"
+        return self.conn.fetch(sql)
+    
+    def spSelectEmpEmail(self, Recruiter_Id, Emp_email):
+        sql = f"EXEC spSelectEmpEmail @Recruiter_Id={Recruiter_Id}, @Emp_email={Emp_email}"
+        return self.conn.fetch(sql)
+    
+    def spSelectEmpNew(self):
+        sql = "EXEC spSelectEmpNew"
+        return self.conn.fetch(sql)
+    
+    def spSelectEmpNumber(self, Recruiter_Id, Emp_number):
+        sql = f"EXEC spSelectEmpNumber @Recruiter_Id={Recruiter_Id}, @Emp_number={Emp_number}"
+        return self.conn.fetch(sql)
+    
+    def spSelectHospitalID(self, ID):
+        sql = f"EXEC spSelectHospitalID @ID={ID}"
+        return self.conn.fetch(sql)
+    
+    def spSelectHospitalLocation(self, City, State):
+        sql = f"EXEC spSelectHospitalLocation @CITY={City}, @STATE={State}"
+        return self.conn.fetch(sql)
+    
+    def spSelectHospitalName(self, Name, City, State):
+        sql = f"EXEC spSelectHospitalName @NAME={Name}, @CITY={City}, @STATE={State}"
+        return self.conn.fetch(sql)
+    
+    #returns a job_id
+    def spSelectJobIdURL(self, URL):
+        sql = f"EXEC spSelectJobIdURL @URL={URL}"
+        return self.conn.fetch(sql)
+    
+    #returns a url
+    def spSelectJobURL(self, URL):
+        sql = f"EXEC spSelectJobURL @URL={URL}"
+        return self.conn.fetch(sql)
+
+    def spSelectLocationId(self, City, State_id):
+        sql = f"EXEC spSelectLocationId @state_id ={State_id}, @city_ascii={City}"
+        return self.conn.fetch(sql)
+    
+    def spSelectNewRecruiter(self):
+        sql = "EXEC spSelectNewRecruiter"
+        return self.conn.fetch(sql)
+    
+    def spSelectSpecialty(self, Specialty_name):
+        sql = f"EXEC spSelectSpecialty @Specialty_name={Specialty_name}"
+        return self.conn.fetch(sql)
+    
+    def spSelectSpecialtyLike(self, Specialty_name):
+        Specialty_name = "%" + Specialty_name + "%"
+        sql = f"EXEC spSelectSpecialtyLike @Specialty_name={Specialty_name}"
+    
+    def spUpdateEmp(self, Emp_name, Emp_email, Emp_number, Emp_id):
+        sql = f"""EXEC spUpdateEmp 
+                @Emp_name={Emp_name},
+                @Emp_email={Emp_email},
+                @Emp_number={Emp_number},
+                @Emp_id={Emp_id}"""
+        self.conn.execute(sql)
+    
+    def spUpdateJobAll(self, Emp_id, Job_title, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, loc_id, Specialty_Id):
+        sql = f"""EXEC spUpdateJobAll
+                    @Emp_Id={Emp_Id}, 
+                    @Job_title={Job_title}, 
+                    @Hospital_type={Hospital_type}, 
+                    @Job_salary={Job_salary}, 
+                    @Job_type={Job_type},
+                    @Job_state={Job_state},
+                    @Job_city={Job_city}, 
+                    @Job_address={Job_address}, 
+                    @Source_site={Source_site}, 
+                    @URL={URL}, 
+                    @Description={Description}, 
+                    @Hospital_id={Hospital_id}, 
+                    @Hospital_name={Hospital_name},
+                    @Ref_num={Ref_num}, 
+                    @Loc_id={loc_id},
+                    @Specialty_Id={Specialty_Id}"""
+        self.conn.execute(sql)
+    
+    def spUpdateJobNull(self, Emp_id, Job_title, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, loc_id, Specialty_Id):
+        sql = f"""EXEC spUpdateJobNull
+                    @Emp_Id={Emp_Id}, 
+                    @Job_title={Job_title}, 
+                    @Hospital_type={Hospital_type}, 
+                    @Job_salary={Job_salary}, 
+                    @Job_type={Job_type},
+                    @Job_state={Job_state},
+                    @Job_city={Job_city}, 
+                    @Job_address={Job_address}, 
+                    @Source_site={Source_site}, 
+                    @URL={URL}, 
+                    @Description={Description}, 
+                    @Hospital_id={Hospital_id}, 
+                    @Hospital_name={Hospital_name},
+                    @Ref_num={Ref_num}, 
+                    @Loc_id={loc_id},
+                    @Specialty_Id={Specialty_Id}"""
+        self.conn.execute(sql)
+    
+    def spUpdateRecruiter(self, Business_type, Business_name, Contact_name, Contact_email, Business_state, Business_city, Business_address, Business_zip, Business_website, hospital_id, Recruiter_Id):
+        sql = f"""EXEC spUpdateRecruiter
+                @Business_type = {Business_type},
+                @Business_name = {Business_name},
+                @Contact_name = {Contact_name},
+                @Contact_email = {Contact_email},
+                @Business_state = {Business_state},
+                @Business_city = {Business_city},
+                @Business_address = {Business_address},
+                @Business_zip = {Business_zip},
+                @Business_website = {Business_website},
+                @hospital_id = {Hospital_id},
+                @Recruiter_id = {Recruiter_id}"""
+        self.conn.execute(sql)

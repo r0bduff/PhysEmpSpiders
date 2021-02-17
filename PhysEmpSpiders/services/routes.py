@@ -1,10 +1,10 @@
-from services.connections import sqlserver_connection as connection
+from connections import sqlserver_connection as connection
 
-class routes:
+class Routes:
     def __init__(self):
-        self.conn = connection
+        self.conn = connection()
         
-    def spInsertEmp(self, Recruiter_Id, Emp_name, Emp_email, Emp_number)
+    def spInsertEmp(self, Recruiter_Id, Emp_name, Emp_email, Emp_number):
         sql = f"EXEC spInsertEmp @Recruiter_Id = {Recruiter_Id}, @Emp_name = {Emp_name}, @Emp_email = {Emp_email}, @Emp_number = {Emp_number}"
         self.conn.execute(sql)
     
