@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -15,7 +16,7 @@ class HealthecareersSpider(scrapy.Spider):
     custom_settings={ 'FEED_URI': "healthecareers_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     
     def start_requests(self):
-        lastpagenum = 452
+        lastpagenum = 106
         for i in range(lastpagenum):
             next_page = 'https://www.healthecareers.com/search-jobs/?catid=&ps=100&pg=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
@@ -34,9 +35,9 @@ class HealthecareersSpider(scrapy.Spider):
                 print(e)
 
         #pagination
-        next_page = response.css('#job-results-next a::attr(href)').get() 
-        if(next_page is not None and next_page != 'javascript:void(0);'):
-            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+        #next_page = response.css('#job-results-next a::attr(href)').get() 
+        #if(next_page is not None and next_page != 'javascript:void(0);'):
+            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
 #Parse listing page
     def parse_listing(self, response):
@@ -73,7 +74,7 @@ class HealthecareersSpider(scrapy.Spider):
         try:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': '',
+                'specialty': response.meta['title'],
                 'hospital_name': '',
                 'job_salary': '',
                 'job_type': jobtype,
@@ -98,6 +99,8 @@ class HealthecareersSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': response.css('li+ li p::text').get().replace('Job Id: ', ''),
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -129,6 +132,8 @@ class HealthecareersSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

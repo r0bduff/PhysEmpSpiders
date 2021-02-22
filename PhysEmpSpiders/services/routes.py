@@ -1,3 +1,5 @@
+#NOT FUNCTIONAL
+
 from connections import sqlserver_connection as connection
 
 class Routes:

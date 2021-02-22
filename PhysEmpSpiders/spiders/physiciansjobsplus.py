@@ -1,3 +1,4 @@
+#Updated to match v2.0 of scraper 2-22-2021
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -14,11 +15,12 @@ class PhysiciansjobsplusSpider(scrapy.Spider):
     start_urls = [client.scrapyGet(url = url_link)]
 
     def parse(self, response):
-        for sp in response.css('#aiAppContainer a::attr(href)').getall():
+        for sp in response.css('#aiAppContainer a'):
             try:
-                url = 'https://www.physiciansjobsplus.com' + sp
+                url = 'https://www.physiciansjobsplus.com' + str(sp.css('#aiAppContainer a::attr(href)').get())
+                specialty = sp.css('#aiAppContainer a::text').get()
                 if(url is not None):
-                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_specialty)
+                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_specialty, meta={'specialty': specialty})
             except Exception as e:
                 print(str(e))
 
@@ -29,8 +31,9 @@ class PhysiciansjobsplusSpider(scrapy.Spider):
                 title = post.css('.arJobTitle a::text').get()
                 business_name = str(post.css('.arJobCoLink::text').get()).replace('\n','').strip()
                 location = str(post.css('.arJobCoLoc::text').get()).strip()
+                specialty = response.meta('specialty')
                 if(url is not None):
-                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'location': location})
+                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'location': location, 'specialty': specialty})
             except Exception as e:
                 print(e)
         
@@ -66,7 +69,7 @@ class PhysiciansjobsplusSpider(scrapy.Spider):
         try:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': '',
+                'specialty': specialty,
                 'hospital_name': '',
                 'job_salary': '',
                 'job_type': '',
@@ -77,7 +80,7 @@ class PhysiciansjobsplusSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'physiciansjobsplus',
                 'url': response.meta['url'],
-                'description': '',
+                'description': response.css('.arDetailDescriptionRow').get(),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
@@ -91,6 +94,8 @@ class PhysiciansjobsplusSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -122,6 +127,8 @@ class PhysiciansjobsplusSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

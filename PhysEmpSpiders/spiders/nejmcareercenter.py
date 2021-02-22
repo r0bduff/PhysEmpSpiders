@@ -1,3 +1,4 @@
+#Updated to match v2.0 of scraper 2-22-2021
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -16,7 +17,7 @@ class NejmcareercenterSpider(scrapy.Spider):
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
     def start_requests(self):
-        lastpagenum = 298
+        lastpagenum = 311
         for i in range(lastpagenum):
             next_page = 'https://www.nejmcareercenter.org/jobs/' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
@@ -94,6 +95,8 @@ class NejmcareercenterSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -125,6 +128,8 @@ class NejmcareercenterSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

@@ -1,3 +1,4 @@
+#Updated to match v2.0 of scraper 2-22-2021
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item

@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -10,7 +11,7 @@ class MedworkingSpider(scrapy.Spider):
     name = 'medworking'
     #custom_settings={ 'FEED_URI': "medworking_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 170
+        lastpagenum = 172
         for i in range(lastpagenum):
             next_page = 'http://www.medworking.com/jobs/physician-advanced-search.html?subspecialtyid=&scope=0&duration=0&workload=3&compensation=0&locumrate=0&positiontype=0&keywords=&st=0&page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
@@ -90,6 +91,8 @@ class MedworkingSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': str(response.css('#CompanyJobHeader tr:nth-child(1) .data::text').get()).replace('\r','').replace('\t','').replace('\n',''),
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -121,6 +124,8 @@ class MedworkingSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

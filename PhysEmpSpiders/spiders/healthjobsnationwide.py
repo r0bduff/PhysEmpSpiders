@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -12,7 +13,7 @@ class HealthjobsnationwideSpider(scrapy.Spider):
     #start_urls = ['https://www.healthjobsnationwide.com/jobs/physician?page=1']
 
     def start_requests(self):
-        lastpagenum = 675
+        lastpagenum = 750
         for i in range(lastpagenum):
             next_page = 'https://www.healthjobsnationwide.com/jobs/physician-jobs?page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
@@ -28,8 +29,9 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                     business_name = post.css('.recruiter-company-profile-job-organization a::text').get()
                 date_posted = str(post.css('.date::text').get()).replace(',','').replace('\n','').strip()
                 location = post.css('.location span::text').get()
+                specialty = str(post.css('.terms::text').get()).replace('|',' ')
                 if(url is not None):
-                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'location': location})
+                    yield scrapy.Request(client.scrapyGet(url= url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'location': location, 'specialty': specialty})
             except Exception as e:
                 print(e)
 
@@ -60,7 +62,7 @@ class HealthjobsnationwideSpider(scrapy.Spider):
         try:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': '',
+                'specialty': response.meta['specialty'],
                 'hospital_name': '',
                 'job_salary': '',
                 'job_type': '',
@@ -85,13 +87,15 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
         except Exception as e:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': '',
+                'specialty': response.meta['specialty'],
                 'hospital_name': '',
                 'job_salary': '',
                 'job_type': '',
@@ -116,6 +120,8 @@ class HealthjobsnationwideSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(str(e))
             yield job

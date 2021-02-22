@@ -1,4 +1,4 @@
-#connection class 
+#connection class NOT FUNCTIONAL
 import pymssql
 
 #class for the primary sql server

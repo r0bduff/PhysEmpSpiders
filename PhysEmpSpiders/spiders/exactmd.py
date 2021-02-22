@@ -1,3 +1,5 @@
+
+
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -90,7 +92,8 @@ class ExactmdSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
-                'Ref_num': ref,
+                'Ref_num': '',
+                'Specialty_id': '',
             })
             yield job
         
@@ -122,6 +125,7 @@ class ExactmdSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Specialty_id': '',
             })
             print(str(e))
             yield job
