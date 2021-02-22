@@ -282,7 +282,7 @@ class PhysempspidersPipeline:
 
         if(number is None and email is None):
             self.route.spInsertEmp(Recruiter[0], item['contact_name'], item['contact_number'], str(item['contact_email']).strip('.'))
-            E_id = self.route.SelectEmpNew()
+            E_id = self.route.spSelectEmpNew()
         else:
             self.Update_Emp(item, E_id)
         
@@ -483,7 +483,7 @@ class Routes:
                 @Business_zip = %s,
                 @Business_website = %s,
                 @hospital_id = %s"""
-        self.conn.execute(sql, (Business_type, Business_name, Contact_name, Contact_number, Contact_email, Business_state, Business_city, Business_address, Business_zip, Business_website, Hospital_id))
+        self.conn.execute(sql, (Business_type, Business_name, Contact_name, Contact_number, Contact_email, Business_state, Business_city, Business_address, Business_zip, Business_website, hospital_id))
     
     def spSelectBusinessName(self, Business_name):
         sql = f"EXEC spSelectBusinessName @Business_name = '{Business_name}'"
