@@ -441,8 +441,8 @@ class Routes:
         self.conn = sqlserver_connection()
         
     def spInsertEmp(self, Recruiter_Id, Emp_name, Emp_email, Emp_number):
-        sql = f"EXEC spInsertEmp @Recruiter_Id = {Recruiter_Id}, @Emp_name = {Emp_name}, @Emp_email = {Emp_email}, @Emp_number = {Emp_number}"
-        self.conn.execute(sql)
+        sql = "EXEC spInsertEmp @Recruiter_Id = %s, @Emp_name = %s, @Emp_email = %s, @Emp_number = %s"
+        self.conn.execute(sql, (Recruiter_Id, Emp_name, Emp_email, Emp_number))
     
     def spInsertJob(self, Recruiter_Id, Emp_id, Job_title, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, loc_id, Specialty, Specialty_Id):
         sql = """EXEC spInsertJob 
