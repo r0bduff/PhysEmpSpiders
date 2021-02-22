@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -98,7 +99,7 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'HospitalRecruiting',
                 'url': response.meta['url'],
-                'description': '',
+                'description': response.css('.job_description').get(),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
@@ -111,6 +112,8 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -141,6 +144,8 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

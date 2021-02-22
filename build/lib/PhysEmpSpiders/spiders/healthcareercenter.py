@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -70,7 +71,7 @@ class HealthcareercenterSpider(scrapy.Spider):
         try:
             job = Item({
                 'title': response.meta['title'],
-                'specialty': '',
+                'specialty': response.meta['title'],
                 'hospital_name': '',
                 'job_salary': response.css('.bti-jd-details-other .bti-jd-detail-text:nth-child(2)::text').get(),
                 'job_type': response.css('.bti-jd-details-other .bti-jd-detail-text~ .bti-jd-detail-text::text').get().strip(),
@@ -95,6 +96,8 @@ class HealthcareercenterSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -126,6 +129,8 @@ class HealthcareercenterSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

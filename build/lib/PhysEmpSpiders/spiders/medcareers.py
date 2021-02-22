@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -13,7 +14,7 @@ class MedcareersSpider(scrapy.Spider):
     def start_requests(self):
         lastpagenum = 51
         for i in range(lastpagenum):
-            next_page = 'https://www.medcareers.com/jobs/?grp=' + str(i)
+            next_page = 'https://www.medcareers.com/jobs/physician/?grp=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse(self, response):
@@ -34,13 +35,13 @@ class MedcareersSpider(scrapy.Spider):
 
         #find emails
         email = ''
-        findemail = re.search(r'[\w\.-]+@[\w\.-]+', str(response.css('p , tr:nth-child(7) .bodytexttable').extract()))
+        findemail = re.search(r'[\w\.-]+@[\w\.-]+', str(response.css('.bodytext').extract()))
         if(findemail is not None):
             email = findemail.group(0)
 
         #find phone numbers
         phone = ''
-        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', str(response.css('p , tr:nth-child(7) .bodytexttable').extract()))
+        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', str(response.css('.bodytext').extract()))
         if(findphone is not None):
             phone = findphone.group(0)
 
@@ -72,7 +73,7 @@ class MedcareersSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'medcareers',
                 'url': response.meta['url'],
-                'description': '',
+                'description': response.css('.bodytext').extract(),
                 'business_type': '',
                 'business_name': business_name,
                 'contact_name': '',
@@ -85,7 +86,9 @@ class MedcareersSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
-                'Ref_num': '',
+                'Ref_num': response.css('tr:nth-child(7) .bodytexttable::text').get(),
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -117,6 +120,8 @@ class MedcareersSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

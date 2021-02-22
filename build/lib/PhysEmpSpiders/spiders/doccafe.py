@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -48,6 +49,8 @@ class DoccafeSpider(scrapy.Spider):
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
         

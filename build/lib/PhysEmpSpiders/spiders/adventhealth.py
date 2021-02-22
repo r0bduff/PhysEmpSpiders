@@ -1,8 +1,9 @@
+#Updated to match v2.0 of scraper 2-22-2021
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
 from datetime import datetime
-from scrapy.exceptions import DontCloseSpider
+import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
@@ -13,7 +14,12 @@ class AdventhealthSpider(scrapy.Spider):
 
     url_link = 'https://jobs.adventhealth.com/en-US/search?pagenumber=1'
     
-    start_urls = [client.scrapyGet(url = url_link)]
+    #start_urls = [client.scrapyGet(url = url_link)]
+    def start_requests(self):
+        lastpagenum = 80
+        for i in range(lastpagenum):
+            next_page = 'https://jobs.adventhealth.com/en-US/search?pagenumber=' + str(i)
+            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse(self, response):
         for post in response.css('.job-result'):
@@ -25,13 +31,24 @@ class AdventhealthSpider(scrapy.Spider):
             date_posted = post.css('.job-result-date-posted-cell::text').get().replace('\n', '').strip()
             yield scrapy.Request(client.scrapyGet(url = url), callback=self.parse_listing, meta={'url': url, 'title': title, 'business_name': business_name, 'date_posted': date_posted, 'city': city, 'state': state})
 
-        next_page = response.css('.next-page-caret::attr(href)').get()
-        if(next_page is not None):   
-            next_page = 'https://jobs.adventhealth.com' + next_page
-            yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
+        #next_page = response.css('.next-page-caret::attr(href)').get()
+        #if(next_page is not None):   
+            #next_page = 'https://jobs.adventhealth.com' + next_page
+            #yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):
         print('---------------------CHECKING INTERIOR PAGE--------------------------')
+        #find emails
+        email = ''
+        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('#jdp-job-description-section').get())
+        if(findemail is not None):
+            email = findemail.group(0)
+
+        #find phone numbers
+        phone = ''
+        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('#jdp-job-description-section').get())
+        if(findphone is not None):
+            phone = findphone.group(0)
         
         try:
             job = Item({ 
@@ -48,22 +65,25 @@ class AdventhealthSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'adventhealth',
                 'url': response.meta['url'],
-                'description': '',#response.css('#jdp-job-description-section :nth-child(1)::text').extract(),
+                'description': str(response.css('#jdp-job-description-section .content-card').extract()).replace('<','').replace('>','').replace('"','').replace("[",'').replace("]",'').replace("'",''),
                 'business_type': 'Hospital',
-                'business_name': response.meta['business_name'],
+                'business_name': 'AdventHealth',
                 'contact_name': '',
-                'contact_number': '',
-                'contact_email': '',
+                'contact_number': phone,
+                'contact_email': email,
                 'business_state': response.meta['state'],
                 'business_city': response.meta['city'],
                 'business_address': '',
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': response.css('.job-id .snapshot-text .secondary-text-color::text').get(),
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
-        except:
+        except Exception as e:
             job = Item({ 
                 'title': response.meta['title'],
                 'specialty': '',
@@ -90,6 +110,10 @@ class AdventhealthSpider(scrapy.Spider):
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
+            print(e)
             yield job
 

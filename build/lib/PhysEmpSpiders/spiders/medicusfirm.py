@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -80,6 +81,8 @@ class MedicusfirmSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': response.css('.standard_list li:nth-child(2)::text').get(),
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -111,6 +114,8 @@ class MedicusfirmSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

@@ -7,6 +7,7 @@
 from itemadapter import ItemAdapter
 #from services.routes import Routes
 import nltk
+nltk.download('all')
 from nltk.corpus import stopwords
 import pymssql
 

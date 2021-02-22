@@ -1,3 +1,4 @@
+#updated v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -9,18 +10,17 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 class LocumjobsonlineSpider(scrapy.Spider):
     name = 'locumJobsOnline'
 
-    url_link = 'https://www.locumjobsonline.com/jobs/1'
+    #url_link = 'https://www.locumjobsonline.com/jobs/search/2?advanced=0'
     
-    start_urls = [client.scrapyGet(url = url_link)]
+    #start_urls = [client.scrapyGet(url = url_link)]
 
     #custom_settings={ 'FEED_URI': "LocumJobsOnline_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
     def start_requests(self):
-        lastpagenum = 1219
+        lastpagenum = 1213
         for i in range(lastpagenum):
-            next_page = 'https://www.locumjobsonline.com/jobs/' + str(i)
+            next_page = 'https://www.locumjobsonline.com/jobs/search/' + str(i) + '?advanced=0'
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
-
 
 #Parse main page
     def parse(self, response):
@@ -73,8 +73,8 @@ class LocumjobsonlineSpider(scrapy.Spider):
                 'hospital_name': '',
                 'job_salary': '',
                 'job_type': response.css('.col-xl-6:nth-child(4) .value::text').get(),
-                'job_state': response.css('.address-state::text').get().replace(',',''),
-                'job_city': response.css('.address-city::text').get().replace(',',''),
+                'job_state': state,
+                'job_city': city,
                 'job_address': response.css('.address-street::text').get(),
                 'date_posted': '',
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -93,6 +93,9 @@ class LocumjobsonlineSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -123,6 +126,9 @@ class LocumjobsonlineSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job

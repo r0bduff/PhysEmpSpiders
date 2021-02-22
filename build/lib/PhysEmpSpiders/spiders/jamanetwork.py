@@ -1,3 +1,4 @@
+#updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
@@ -88,6 +89,8 @@ class JamanetworkSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': response.css('.job-detail-description__job-ref .three-fifths::text').get(),
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -119,6 +122,8 @@ class JamanetworkSpider(scrapy.Spider):
                 'business_website': '',
                 'hospital_id': '',
                 'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job
