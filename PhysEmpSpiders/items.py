@@ -34,3 +34,4 @@ class PhysempspidersItem(scrapy.Item):
     hospital_id = scrapy.Field()
     Ref_num = scrapy.Field()
     Loc_id = scrapy.Field()
+    Specialty_id = scrapy.Field()

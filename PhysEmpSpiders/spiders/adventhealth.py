@@ -64,7 +64,7 @@ class AdventhealthSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'adventhealth',
                 'url': response.meta['url'],
-                'description': response.css('#jdp-job-description-section .content-card').extract(),
+                'description': str(response.css('#jdp-job-description-section .content-card').extract()).replace('<','').replace('>','').replace('"','').replace("[",'').replace("]",'').replace("'",''),
                 'business_type': 'Hospital',
                 'business_name': 'AdventHealth',
                 'contact_name': '',
@@ -78,6 +78,7 @@ class AdventhealthSpider(scrapy.Spider):
                 'hospital_id': '',
                 'Ref_num': response.css('.job-id .snapshot-text .secondary-text-color::text').get(),
                 'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
 
@@ -110,6 +111,7 @@ class AdventhealthSpider(scrapy.Spider):
                 'hospital_id': '',
                 'Ref_num': '',
                 'Loc_id': '',
+                'Specialty_id': '',
             })
             print(e)
             yield job
