@@ -462,7 +462,7 @@ class Routes:
                     @Hospital_name=%s,
                     @Ref_num=%s, 
                     @Loc_id=%s,
-                    @Specicalty=%s,
+                    @Specialty=%s,
                     @Specialty_Id=%s"""
         self.conn.execute(sql,(Recruiter_Id, Emp_id, Job_title, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, loc_id, Specialty, Specialty_Id))
 
