@@ -57,7 +57,7 @@ class PhysempspidersPipeline:
                 #make new job with new recruiter
                 #check if hospital info lines up with db entry. Update job info if necessary.
                 item = self.Check_Hospital(item)
-                self.Insert_Job(id[0], item, E_id)
+                self.Insert_Job(id, item, E_id)
         else:
             print('Updating Job')
             item['job_state'] = self.Get_Abbrev(str(item['job_state']))
