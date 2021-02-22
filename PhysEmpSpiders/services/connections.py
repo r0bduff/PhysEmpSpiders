@@ -28,7 +28,7 @@ class sqlserver_connection:
             self.cur.execute(sql)
             result = self.cur.fetchall()
         except Exception as e:
-            print("Connection Fetch Failed: " + str(e))
+            print("SQL:" + str(sql) + "Connection Fetch Failed: " + str(e))
         self.__disconnect__()
         return result
 
