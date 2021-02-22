@@ -57,7 +57,7 @@ class PhysempspidersPipeline:
                 #make new job with new recruiter
                 #check if hospital info lines up with db entry. Update job info if necessary.
                 item = self.Check_Hospital(item)
-                self.Insert_Job(id[0], item, E_id)
+                self.Insert_Job(id, item, E_id)
         else:
             print('Updating Job')
             item['job_state'] = self.Get_Abbrev(str(item['job_state']))
@@ -462,7 +462,7 @@ class Routes:
                     @Hospital_name=%s,
                     @Ref_num=%s, 
                     @Loc_id=%s,
-                    @Specicalty=%s,
+                    @Specialty=%s,
                     @Specialty_Id=%s"""
         self.conn.execute(sql,(Recruiter_Id, Emp_id, Job_title, Hospital_type, Job_salary, Job_type, Job_state, Job_city, Job_address, Source_site, URL, Description, Hospital_id, Hospital_name, Ref_num, loc_id, Specialty, Specialty_Id))
 
