@@ -491,15 +491,15 @@ class Routes:
     
     def spSelectEmpEmail(self, Recruiter_Id, Emp_email):
         sql = f"EXEC spSelectEmpEmail @Recruiter_Id={Recruiter_Id}, @Emp_email='{Emp_email}'"
-        return self.conn.fetch(sql)
+        return self.conn.fetchone(sql)
     
     def spSelectEmpNew(self):
         sql = "EXEC spSelectEmpNew"
-        return self.conn.fetch(sql)
+        return self.conn.fetchone(sql)
     
     def spSelectEmpNumber(self, Recruiter_Id, Emp_number):
         sql = f"EXEC spSelectEmpNumber @Recruiter_Id={Recruiter_Id}, @Emp_number='{Emp_number}'"
-        return self.conn.fetch(sql)
+        return self.conn.fetchone(sql)
     
     def spSelectHospitalID(self, ID):
         sql = f"EXEC spSelectHospitalID @ID={ID}"
