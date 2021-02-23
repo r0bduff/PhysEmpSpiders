@@ -259,10 +259,10 @@ class PhysempspidersPipeline:
                             Specialty_Id = out[0]
                     elif len(found) == 1:
                         for f in found:
-                            if f[1] > 1:
-                                out[0] = f[0]
-                                out[1] = f[1]
-                                Specialty_Id = out[0]
+                            out[0] = f[0]
+                            out[1] = f[1]
+                            Specialty_Id = out[0]
+                                
         return Specialty_Id #return a specialty id matches about 80% of the time
     
 #@method Insert_Emp

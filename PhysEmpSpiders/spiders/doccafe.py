@@ -49,6 +49,7 @@ class DoccafeSpider(scrapy.Spider):
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
                 'Loc_id': '',
                 'Specialty_id': '',
             })
