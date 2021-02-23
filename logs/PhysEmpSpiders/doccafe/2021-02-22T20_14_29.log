@@ -1,0 +1,3409 @@
+2021-02-22 20:14:34 [scrapy.utils.log] INFO: Scrapy 2.4.1 started (bot: PhysEmpSpiders)
+2021-02-22 20:14:34 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.19041-SP0
+2021-02-22 20:14:34 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-02-22 20:14:34 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'PhysEmpSpiders',
+ 'CONCURRENT_REQUESTS': 10,
+ 'COOKIES_ENABLED': False,
+ 'LOG_FILE': 'logs\\PhysEmpSpiders\\doccafe\\2021-02-22T20_14_29.log',
+ 'NEWSPIDER_MODULE': 'PhysEmpSpiders.spiders',
+ 'SPIDER_MODULES': ['PhysEmpSpiders.spiders']}
+2021-02-22 20:14:34 [scrapy.extensions.telnet] INFO: Telnet Password: b43af679cf0b4c68
+2021-02-22 20:14:34 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2021-02-22 20:14:34 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2021-02-22 20:14:34 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2021-02-22 20:14:38 [scrapy.middleware] INFO: Enabled item pipelines:
+['PhysEmpSpiders.pipelines.PhysempspidersPipeline']
+2021-02-22 20:14:38 [scrapy.core.engine] INFO: Spider opened
+2021-02-22 20:14:38 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2021-02-22 20:14:38 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2021-02-22 20:14:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fwww.doccafe.com%2Fjobs%2Fsearch%3Fposted_period%3Dall%26results_per_page%3D50%26page%3D682&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-02-22 20:14:40 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 68,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:40',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Atlanta',
+ 'job_salary': None,
+ 'job_state': 'GA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Medical Director Medical Director',
+ 'title': 'Medical Director of Quality Physician MD DO',
+ 'url': 'www.doccafe.com/job/physician/medical-director/4523567/medical-director-of-quality-physician-md-do'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:40 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 68,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:40',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Chicago',
+ 'job_salary': None,
+ 'job_state': 'IL',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Medical Director Medical Director',
+ 'title': 'Medical Director of Quality Physician MD DO',
+ 'url': 'www.doccafe.com/job/physician/medical-director/4523569/medical-director-of-quality-physician-md-do'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:41 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 68,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:40',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Atlanta',
+ 'job_salary': None,
+ 'job_state': 'GA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Medical Director Medical Director',
+ 'title': 'Medical Director MD DO',
+ 'url': 'www.doccafe.com/job/physician/medical-director/4523571/medical-director-md-do'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:41 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:41',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Atlanta',
+ 'job_salary': None,
+ 'job_state': 'GA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Senior Care Coding Specialist',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4523558/senior-care-coding-specialist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:41 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 68,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:41',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Atlanta',
+ 'job_salary': None,
+ 'job_state': 'GA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Medical Director Medical Director',
+ 'title': 'Senior Medical Officer',
+ 'url': 'www.doccafe.com/job/physician/medical-director/4523559/senior-medical-officer'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:41 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 68,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:41',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Chicago',
+ 'job_salary': None,
+ 'job_state': 'IL',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Medical Director Medical Director',
+ 'title': 'Medical Director MD DO',
+ 'url': 'www.doccafe.com/job/physician/medical-director/4523564/medical-director-md-do'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:41 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 107,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:41',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Watertown',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pediatrics Pediatrics',
+ 'title': 'Oncology Physician - Locum Tenens',
+ 'url': 'www.doccafe.com/job/physician/pediatrics/4523565/oncology-physician-locum-tenens'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:42 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:41',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Watertown',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Oncology-Medical Oncology Oncology-Medical Oncology',
+ 'title': 'Oncology Physician - Locum Tenens',
+ 'url': 'www.doccafe.com/job/physician/oncology-medical-oncology/4523566/oncology-physician-locum-tenens'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:42 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 9,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:42',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Atlanta',
+ 'job_salary': None,
+ 'job_state': 'GA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neuro Hospitalist - Locum Tenens - Georgia',
+ 'url': 'www.doccafe.com/job/physician/neurology/4616847/neuro-hospitalist-locum-tenens-georgia'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:42 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 51,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:42',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Louisville',
+ 'job_salary': None,
+ 'job_state': 'KY',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Medicine, Physician, FM Locum Tenens',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616844/family-medicine-physician-fm-locum-tenens'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:43 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 30,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:42',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Nags Head',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Emergency Medicine Emergency Medicine',
+ 'title': 'Emergency Medicine / Locums',
+ 'url': 'www.doccafe.com/job/physician/emergency-medicine/4616848/emergency-medicine-locums'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:43 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 723,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:43',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Yorba Linda',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine Internal Medicine',
+ 'title': 'Physician Needed For Sporadic Coverage At Urgent Care Clinic',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine/4616840/physician-needed-for-sporadic-coverage-at-urgent-care-clinic'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:43 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 723,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:43',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Yorba Linda',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Physician Needed For Sporadic Coverage At Urgent Care Clinic',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616843/physician-needed-for-sporadic-coverage-at-urgent-care-clinic'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:44 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 723,
+ 'Specialty_id': 107,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:43',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Yorba Linda',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pediatrics Pediatrics',
+ 'title': 'Physician Needed For Sporadic Coverage At Urgent Care Clinic',
+ 'url': 'www.doccafe.com/job/physician/pediatrics/4616842/physician-needed-for-sporadic-coverage-at-urgent-care-clinic'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:44 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 723,
+ 'Specialty_id': 38,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:44',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Yorba Linda',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Urgent Care Urgent Care',
+ 'title': 'Physician Needed For Sporadic Coverage At Urgent Care Clinic',
+ 'url': 'www.doccafe.com/job/physician/urgent-care/4616841/physician-needed-for-sporadic-coverage-at-urgent-care-clinic'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:44 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 777,
+ 'Specialty_id': 95,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Cross Country Locums',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:44',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Cross Country Locums',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Johnstown',
+ 'job_salary': None,
+ 'job_state': 'PA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Obstetrics & Gynecology Obstetrics & Gynecology',
+ 'title': 'MFM - locum tenens physician',
+ 'url': 'www.doccafe.com/job/physician/obstetrics-gynecology/4616839/mfm-locum-tenens-physician'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:45 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 58,
+ 'Specialty_id': 11,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:44',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Northeast Healthcare Recruitment, Inc.',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Omaha',
+ 'job_salary': None,
+ 'job_state': 'NE',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pain Management Pain Management',
+ 'title': 'Interventional Pain Physician',
+ 'url': 'www.doccafe.com/job/physician/pain-management/4616838/interventional-pain-physician'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:45 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 30,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'The Talent Society',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:45',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'The Talent Society',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Sherman',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Emergency Medicine Emergency Medicine',
+ 'title': 'ER Opportunity in North Texas',
+ 'url': 'www.doccafe.com/job/physician/emergency-medicine/4523549/er-opportunity-in-north-texas'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:45 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 40,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Archway Physician Recruitment',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:45',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Archway Physician Recruitment',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Kingston',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Gastroenterology Gastroenterology',
+ 'title': 'Gastroenterology opening in NY',
+ 'url': 'www.doccafe.com/job/physician/gastroenterology/3625546/gastroenterology-opening-in-ny'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:45 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Adelphi Medical Staffing, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:45',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Adelphi Medical Staffing, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Reading',
+ 'job_salary': None,
+ 'job_state': 'PA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Psychiatric-Mental Health Psychiatric-Mental Health',
+ 'title': 'Psychiatrist needed for an ongoing locum opportunity in '
+          'Pennsylvania',
+ 'url': 'www.doccafe.com/job/physician/psychiatric-mental-health/4493204/psychiatrist-needed-for-an-ongoing-locum-opportunity-in-pennsylvania'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:45 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Adelphi Medical Staffing, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:45',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Adelphi Medical Staffing, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Modesto',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neurologist needed for an ongoing locum opportunity in California',
+ 'url': 'www.doccafe.com/job/physician/neurology/4493205/neurologist-needed-for-an-ongoing-locum-opportunity-in-california'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:46 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 35,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'SCP Health',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:45',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'SCP Health',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Kansas City',
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine Internal Medicine',
+ 'title': 'Primary Care Physician',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine/4586213/primary-care-physician'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:46 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'AB Staffing Solutions, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:46',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'AB Staffing Solutions, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': 'AZ',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Primary Care Indian Health Services',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616789/primary-care-indian-health-services'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:46 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'RM Medical Search & Consulting',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:46',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'RM Medical Search & Consulting',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': 'MA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Cardiology-Noninvasive Cardiology-Noninvasive',
+ 'title': 'General/Non-Invasive Cardiology',
+ 'url': 'www.doccafe.com/job/physician/cardiology-noninvasive/4375779/general-non-invasive-cardiology'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:47 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'SUMO Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:46',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'SUMO Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': 'AZ',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Looking for  FM physician coverage as soon as credentialed',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616783/looking-for-fm-physician-coverage-as-soon-as-credentialed'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:47 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:47',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Lexington',
+ 'job_salary': None,
+ 'job_state': 'KY',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Radiology-Neuroradiology Radiology-Neuroradiology',
+ 'title': 'Neuroradiologist',
+ 'url': 'www.doccafe.com/job/physician/radiology-neuroradiology/4226034/neuroradiologist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:47 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 27,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:47',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'La Jolla',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Dermatology Dermatology',
+ 'title': 'Dermatologist',
+ 'url': 'www.doccafe.com/job/physician/dermatology/4616771/dermatologist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:47 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 2168,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:47',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Augusta',
+ 'job_salary': None,
+ 'job_state': 'ME',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Practice Physician',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616770/family-practice-physician'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:48 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 609,
+ 'Specialty_id': 49,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:47',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Elizabethtown',
+ 'job_salary': None,
+ 'job_state': 'KY',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Hematology/Oncology Hematology/Oncology',
+ 'title': 'Hematologist/Oncologist',
+ 'url': 'www.doccafe.com/job/physician/hematology-oncology/4616768/hematologist-oncologist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:48 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 418,
+ 'Specialty_id': 119,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:48',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Burlington',
+ 'job_salary': None,
+ 'job_state': 'VT',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pathology Pathology',
+ 'title': 'Pathologist',
+ 'url': 'www.doccafe.com/job/physician/pathology/4616767/pathologist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:48 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 520,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:48',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'New Braunfels',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine Internal Medicine',
+ 'title': 'Internal Medicine Physician',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine/4616766/internal-medicine-physician'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:49 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 8,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:48',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Houston',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Practice Physician',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616764/family-practice-physician'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:49 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 23,
+ 'Specialty_id': 18,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:49',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Baltimore',
+ 'job_salary': None,
+ 'job_state': 'MD',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Hospitalist Hospitalist',
+ 'title': 'Hospitalist',
+ 'url': 'www.doccafe.com/job/physician/hospitalist/4616765/hospitalist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:49 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 950,
+ 'Specialty_id': 120,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:49',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Helena',
+ 'job_salary': None,
+ 'job_state': 'MT',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Anesthesiology Anesthesiology',
+ 'title': 'Anesthesiologist',
+ 'url': 'www.doccafe.com/job/physician/anesthesiology/4616763/anesthesiologist'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:50 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 38,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:49',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Brooklyn',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Urgent Care Urgent Care',
+ 'title': 'Urgent Care - Physician Assistant',
+ 'url': 'www.doccafe.com/job/physician-assistant/urgent-care/4616762/urgent-care-physician-assistant'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:50 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 28,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Barton Associates',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:50',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Barton Associates',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Sacramento',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Surgery-Cardiovascular Surgery-Cardiovascular',
+ 'title': 'Cardiovascular and Thoracic - Physician Assistant',
+ 'url': 'www.doccafe.com/job/physician-assistant/surgery-cardiovascular/4616761/cardiovascular-and-thoracic-physician-assistant'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:50 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 376,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Med Staff Matters',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:50',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Med Staff Matters',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Sugar Land',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurophysiology Neurophysiology',
+ 'title': 'Neuromuscular Neurology opportunity in Houston',
+ 'url': 'www.doccafe.com/job/physician/neurophysiology/4616759/neuromuscular-neurology-opportunity-in-houston'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:51 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 8,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Med Staff Matters',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:50',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Med Staff Matters',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Houston',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurophysiology Neurophysiology',
+ 'title': 'Neuromuscular Neurology opportunity in Houston',
+ 'url': 'www.doccafe.com/job/physician/neurophysiology/4616749/neuromuscular-neurology-opportunity-in-houston'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:51 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 376,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Med Staff Matters',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:51',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Med Staff Matters',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Sugar Land',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neuromusculoskeletal Medicine Neuromusculoskeletal Medicine',
+ 'title': 'Neuromuscular Neurology opportunity in Houston',
+ 'url': 'www.doccafe.com/job/physician/neuromusculoskeletal-medicine/4616748/neuromuscular-neurology-opportunity-in-houston'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:51 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 8,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Med Staff Matters',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:51',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Med Staff Matters',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Houston',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neuromusculoskeletal Medicine Neuromusculoskeletal Medicine',
+ 'title': 'Neuromuscular Neurology opportunity in Houston',
+ 'url': 'www.doccafe.com/job/physician/neuromusculoskeletal-medicine/4616747/neuromuscular-neurology-opportunity-in-houston'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:52 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 376,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Med Staff Matters',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:51',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Med Staff Matters',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Sugar Land',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neuromuscular neurology opportunity in Houston',
+ 'url': 'www.doccafe.com/job/physician/neurology/4616745/neuromuscular-neurology-opportunity-in-houston'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:52 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 30,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'OSF HealthCare / OSF Medical Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:52',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'OSF HealthCare / OSF Medical Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Peoria',
+ 'job_salary': None,
+ 'job_state': 'IL',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Emergency Medicine Emergency Medicine',
+ 'title': 'OSF HealthCare has immediate multiple openings for Emergency '
+          'Medicine Physicians in Illinois',
+ 'url': 'www.doccafe.com/job/physician/emergency-medicine/3727926/osf-healthcare-has-immediate-multiple-openings-for-emergency-medicine-physicians-in-illinois'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:52 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'The Talent Society',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:52',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'The Talent Society',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Modesto',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neurology Coverage in Modesto',
+ 'url': 'www.doccafe.com/job/physician/neurology/4493184/neurology-coverage-in-modesto'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:52 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Perm Solutions USA',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:52',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Perm Solutions USA',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine-Pediatrics Internal Medicine-Pediatrics',
+ 'title': 'Family Practice Perm Position in Cape Girardeau MO',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine-pediatrics-1/4493182/family-practice-perm-position-in-cape-girardeau-mo'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:53 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Perm Solutions USA',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:52',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Perm Solutions USA',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Saint Louis',
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'FP Physician needed about 1 hour south of St. Louis, MO - Visa '
+          'Sponsorship is available',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4469313/fp-physician-needed-about-1-hour-south-of-st-louis-mo-visa-sponsorship-is-available'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:53 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Perm Solutions USA',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:53',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Perm Solutions USA',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Saint Louis',
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine-Pediatrics Internal Medicine-Pediatrics',
+ 'title': 'IM Physician needed about 1 hour south of St. Louis, MO - Visa '
+          'Sponsorship is available',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine-pediatrics-1/4469312/im-physician-needed-about-1-hour-south-of-st-louis-mo-visa-sponsorship-is-available'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:53 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'The Medicus Firm',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:53',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'The Medicus Firm',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Surgery-Neurosurgery Surgery-Neurosurgery',
+ 'title': 'Central TX Neurosurgery',
+ 'url': 'www.doccafe.com/job/physician/surgery-neurosurgery/3799273/central-tx-neurosurgery'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:53 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 8,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Med Staff Matters',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:53',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Med Staff Matters',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Houston',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neuromuscular neurology opportunity in Houston',
+ 'url': 'www.doccafe.com/job/physician/neurology/4616744/neuromuscular-neurology-opportunity-in-houston'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:54 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'LifePoint Health',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:53',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'LifePoint Health',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Missoula',
+ 'job_salary': None,
+ 'job_state': 'MT',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pulmonology-Critical Care Pulmonology-Critical Care',
+ 'title': 'Pulmonary/Critical Care Opening in Beautiful Montana',
+ 'url': 'www.doccafe.com/job/physician/pulmonology-critical-care/4171454/pulmonary-critical-care-opening-in-beautiful-montana'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:54 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 136,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Adelphi Medical Staffing, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-20',
+ 'date_scraped': '2021-02-22 20:14:54',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Adelphi Medical Staffing, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Santa Rosa',
+ 'job_salary': None,
+ 'job_state': 'CA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neurologist needed for a locum opportunity in California',
+ 'url': 'www.doccafe.com/job/physician/neurology/4616734/neurologist-needed-for-a-locum-opportunity-in-california'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.doccafe.com%2Fjobs%2Fsearch%3Fposted_period%3Dall%26results_per_page%3D50%26page%3D683&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.doccafe.com%2Fjobs%2Fsearch%3Fposted_period%3Dall%26results_per_page%3D50%26page%3D682&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-02-22 20:14:56 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:56',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Practice in  - Physician - Family Medicine - Practice in the '
+          'Heart of New Zealand',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616733/family-practice-in-physician-family-medicine-practice-in-the-heart-of-new-zealand'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:56 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 193,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:56',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Irving',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Practice in TX - Family Practice Physician - New Opportunity '
+          'in Eastern Texas',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616732/family-practice-in-tx-family-practice-physician-new-opportunity-in-eastern-texas'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:57 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 3420,
+ 'Specialty_id': 18,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:56',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Lawrenceburg',
+ 'job_salary': None,
+ 'job_state': 'IN',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Hospitalist Hospitalist',
+ 'title': 'Hospitalist in IN - Hospitalist - Exciting Opportunity in Indiana',
+ 'url': 'www.doccafe.com/job/physician/hospitalist/4616731/hospitalist-in-in-hospitalist-exciting-opportunity-in-indiana'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:57 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 777,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:57',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Johnstown',
+ 'job_salary': None,
+ 'job_state': 'PA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neurology in PA - Neurologist - Exciting Opportunity in Western '
+          'Pennsylvania',
+ 'url': 'www.doccafe.com/job/physician/neurology/4616730/neurology-in-pa-neurologist-exciting-opportunity-in-western-pennsylvania'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:57 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:57',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Practice in  - Family Practice Physician -  Exciting '
+          'Position in New Zealand',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616729/family-practice-in-family-practice-physician-exciting-position-in-new-zealand'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:58 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:57',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': 'CT',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Family Practice in CT - Family Practice Physician - New Opportunity '
+          'in North Central Connecticut',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616727/family-practice-in-ct-family-practice-physician-new-opportunity-in-north-central-connecticut'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:58 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 5765,
+ 'Specialty_id': 40,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:58',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Galax',
+ 'job_salary': None,
+ 'job_state': 'VA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Gastroenterology Gastroenterology',
+ 'title': 'Gastroenterology in VA - Gastroenterologist - Exciting Opportunity '
+          'in Southern Virginia',
+ 'url': 'www.doccafe.com/job/physician/gastroenterology/4616728/gastroenterology-in-va-gastroenterologist-exciting-opportunity-in-southern-virginia'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:58 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 777,
+ 'Specialty_id': 95,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Global Medical Staffing',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:58',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Global Medical Staffing',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Johnstown',
+ 'job_salary': None,
+ 'job_state': 'PA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Obstetrics & Gynecology Obstetrics & Gynecology',
+ 'title': 'Obstetrics and Gynecology in PA - OB/GYN - Exciting Opportunity in '
+          'Western Pennsylvania',
+ 'url': 'www.doccafe.com/job/physician/obstetrics-gynecology/4616726/obstetrics-and-gynecology-in-pa-ob-gyn-exciting-opportunity-in-western-pennsylvania'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:58 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 147,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Integrated Rehab Consultants',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:58',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Integrated Rehab Consultants',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Orlando',
+ 'job_salary': None,
+ 'job_state': 'FL',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Physiatry/Physical Medicine & Rehabilitation Physiatry/Physical '
+              'Medicine & Rehabilitation',
+ 'title': '350-400k Orlando Physiatry Job--no call-part time available',
+ 'url': 'www.doccafe.com/job/physician/physiatry-physical-medicine-rehabilitation/4523482/350-400k-orlando-physiatry-job-no-call-part-time-available'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:59 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Adelphi Medical Staffing, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:58',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Adelphi Medical Staffing, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Portland',
+ 'job_salary': None,
+ 'job_state': 'OR',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Psychiatry-Addiction Psychiatry-Addiction',
+ 'title': 'Psychiatrist needed for an ongoing locum opportunity in Oregon',
+ 'url': 'www.doccafe.com/job/physician/psychiatry-addiction/4493177/psychiatrist-needed-for-an-ongoing-locum-opportunity-in-oregon'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:59 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 59,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Adelphi Medical Staffing, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:59',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Adelphi Medical Staffing, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Hartford',
+ 'job_salary': None,
+ 'job_state': 'CT',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Infectious Disease Infectious Disease',
+ 'title': 'Infectious Disease Physician needed for an ongoing weekend locum '
+          'opportunity in Connecticut',
+ 'url': 'www.doccafe.com/job/physician/infectious-disease/4493180/infectious-disease-physician-needed-for-an-ongoing-weekend-locum-opportunity-in-connecticut'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:59 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 147,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Integrated Rehab Consultants',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:59',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Integrated Rehab Consultants',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Orlando',
+ 'job_salary': None,
+ 'job_state': 'FL',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Physiatry/Physical Medicine & Rehabilitation Physiatry/Physical '
+              'Medicine & Rehabilitation',
+ 'title': '350-400K Orlando Physiatry Job- no call--part time available',
+ 'url': 'www.doccafe.com/job/physician/physiatry-physical-medicine-rehabilitation/30551/350-400k-orlando-physiatry-job-no-call-part-time-available'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:14:59 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 99,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:59',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Cincinnati',
+ 'job_salary': None,
+ 'job_state': 'OH',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Ophthalmology Ophthalmology',
+ 'title': 'Ohio Oculoplastic Opening 201001',
+ 'url': 'www.doccafe.com/job/physician/ophthalmology/4415683/ohio-oculoplastic-opening-201001'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:00 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 49,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:14:59',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': None,
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Hematology/Oncology Hematology/Oncology',
+ 'title': 'West Virginia Hematology Oncology Opening 201202',
+ 'url': 'www.doccafe.com/job/physician/hematology-oncology/4495427/west-virginia-hematology-oncology-opening-201202'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:00 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 17,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:00',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Valdosta',
+ 'job_salary': None,
+ 'job_state': 'GA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Cardiology Cardiology',
+ 'title': 'Georgia General Cardiology Opening 201205',
+ 'url': 'www.doccafe.com/job/physician/cardiology/4495433/georgia-general-cardiology-opening-201205'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:00 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 35,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:00',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Huntington',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Geriatrics Family Practice-Geriatrics',
+ 'title': 'West Virginia Geriatrics Opening 201206',
+ 'url': 'www.doccafe.com/job/physician/family-practice-geriatrics/4495452/west-virginia-geriatrics-opening-201206'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:00 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:00',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Lafayette',
+ 'job_salary': None,
+ 'job_state': 'LA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Surgery-Neurosurgery Surgery-Neurosurgery',
+ 'title': 'Louisiana Neurosurgery Opening 201204',
+ 'url': 'www.doccafe.com/job/physician/surgery-neurosurgery/4506340/louisiana-neurosurgery-opening-201204'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:01 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 5876,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'The Talent Society',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:00',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'The Talent Society',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Carrizo Springs',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Pediatric Help Needed',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4616693/pediatric-help-needed'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:01 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': 5876,
+ 'Specialty_id': 107,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'The Talent Society',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:01',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'The Talent Society',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Carrizo Springs',
+ 'job_salary': None,
+ 'job_state': 'TX',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pediatrics Pediatrics',
+ 'title': 'Pediatric Help Needed',
+ 'url': 'www.doccafe.com/job/physician/pediatrics/4616672/pediatric-help-needed'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:01 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:01',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Jefferson City',
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Psychiatric-Mental Health Psychiatric-Mental Health',
+ 'title': 'Outpatient Only Psychiatry  Job Opportunity in Mid-Missouri',
+ 'url': 'www.doccafe.com/job/physician/psychiatric-mental-health/3832643/outpatient-only-psychiatry-job-opportunity-in-mid-missouri'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:01 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:01',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Natchez',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'SEEKING FAMILY MEDICINE PHYSICIAN IN SW MISSISSIPPI',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/3430858/seeking-family-medicine-physician-in-sw-mississippi'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:02 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:01',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Hattiesburg',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Neurology Job in Hattiesburg, MS',
+ 'url': 'www.doccafe.com/job/physician/neurology/3430851/neurology-job-in-hattiesburg-ms'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:02 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 114,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:02',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Hattiesburg',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Otolaryngology Otolaryngology',
+ 'title': 'Otolaryngology Job in Hattiesburg, MS',
+ 'url': 'www.doccafe.com/job/physician/otolaryngology/3430850/otolaryngology-job-in-hattiesburg-ms'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:02 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 142,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:02',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Las Cruces',
+ 'job_salary': None,
+ 'job_state': '',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Urology Urology',
+ 'title': 'Urology Job in Las Cruces, NM',
+ 'url': 'www.doccafe.com/job/physician/urology/3430844/urology-job-in-las-cruces-nm'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:02 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:02',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Jefferson City',
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pulmonology-Critical Care Pulmonology-Critical Care',
+ 'title': 'Pulmonary Critical Care Opening - 7 on/7 Off Days Opportunity in '
+          'Mid-Missouri',
+ 'url': 'www.doccafe.com/job/physician/pulmonology-critical-care/3832645/pulmonary-critical-care-opening-7-on-7-off-days-opportunity-in-mid-missouri'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:02 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:02',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Jackson',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine Internal Medicine',
+ 'title': 'Internal Medicine Job in Jackson, MS',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine/3430861/internal-medicine-job-in-jackson-ms'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:03 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 40,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:02',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Crestview',
+ 'job_salary': None,
+ 'job_state': 'FL',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Gastroenterology Gastroenterology',
+ 'title': 'Gastroenterology Job in Crestview, FL  Minutes to the Emerald Coast '
+          'of the Gulf of Mexico, with the most beautiful white sand be',
+ 'url': 'www.doccafe.com/job/physician/gastroenterology/3430843/gastroenterology-job-in-crestview-fl-minutes-to-the-emerald-coast-of-the-gulf-of-mexico-with-the-most-beautiful-white-sand-be'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:03 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:03',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Harlan',
+ 'job_salary': None,
+ 'job_state': 'KY',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Surgery-General Surgery-General',
+ 'title': 'General Surgery Opportunity located near Lexington, KY',
+ 'url': 'www.doccafe.com/job/physician/surgery-general/3832634/general-surgery-opportunity-located-near-lexington-ky'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:03 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:03',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Jefferson City',
+ 'job_salary': None,
+ 'job_state': 'MO',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Pulmonology-Critical Care Pulmonology-Critical Care',
+ 'title': 'Outpatient-Only Pulmonary Practice Opportunity in Mid-Missouri',
+ 'url': 'www.doccafe.com/job/physician/pulmonology-critical-care/3832646/outpatient-only-pulmonary-practice-opportunity-in-mid-missouri'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:03 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 61,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:03',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Vicksburg',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Internal Medicine Internal Medicine',
+ 'title': 'Internal Medicine Job in Vicksburg, MS',
+ 'url': 'www.doccafe.com/job/physician/internal-medicine/3430856/internal-medicine-job-in-vicksburg-ms'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:04 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 95,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:03',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Jackson',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Obstetrics & Gynecology Obstetrics & Gynecology',
+ 'title': 'Obstetrics and Gynecology Job in Jackson, MS',
+ 'url': 'www.doccafe.com/job/physician/obstetrics-gynecology/3430860/obstetrics-and-gynecology-job-in-jackson-ms'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:04 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 142,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Arlington HealthCare',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:04',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Arlington HealthCare',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Jackson',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Urology Urology',
+ 'title': 'Urology Job in Jackson, MS',
+ 'url': 'www.doccafe.com/job/physician/urology/3430859/urology-job-in-jackson-ms'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:04 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'PrimeHealth Staffing, LLC',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:04',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'PrimeHealth Staffing, LLC',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Wyalusing',
+ 'job_salary': None,
+ 'job_state': 'PA',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-Without OB Family Practice-Without OB',
+ 'title': 'Physician (MD/DO)',
+ 'url': 'www.doccafe.com/job/physician/family-practice-without-ob/4615970/physician-md-do'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 52, in process_item
+    self.Insert_Job(row[0], item, E_id)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 73, in Insert_Job
+    self.route.spInsertJob(R_id, Emp_Id, item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:04 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 53,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:04',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'McComb',
+ 'job_salary': None,
+ 'job_state': 'MS',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Neurology Neurology',
+ 'title': 'Mississippi Neurology Opening 201010',
+ 'url': 'www.doccafe.com/job/physician/neurology/4456738/mississippi-neurology-opening-201010'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:05 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:04',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'South Bend',
+ 'job_salary': None,
+ 'job_state': 'IN',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Cardiology-Noninvasive Cardiology-Noninvasive',
+ 'title': 'Midwest General Non-Invasive Cardiologist Opening 201004',
+ 'url': 'www.doccafe.com/job/physician/cardiology-noninvasive/4456708/midwest-general-non-invasive-cardiologist-opening-201004'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
+2021-02-22 20:15:05 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Specialty_id': 39,
+ 'business_address': None,
+ 'business_city': None,
+ 'business_name': 'Pinnacle Health Group',
+ 'business_state': None,
+ 'business_type': None,
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '2021-02-12',
+ 'date_scraped': '2021-02-22 20:15:05',
+ 'description': None,
+ 'hospital_id': None,
+ 'hospital_name': 'Pinnacle Health Group',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'South Bend',
+ 'job_salary': None,
+ 'job_state': 'IN',
+ 'job_type': None,
+ 'source_site': 'doccafe',
+ 'specialty': 'Family Practice-With OB Family Practice-With OB',
+ 'title': 'Midwest Family Medicine Opening 200809',
+ 'url': 'www.doccafe.com/job/physician/family-practice-with-ob/4456711/midwest-family-medicine-opening-200809'}
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 64, in process_item
+    self.Update_Job(item)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 91, in Update_Job
+    self.route.spUpdateJobNull(item['title'], item['hospital_type'], item['job_salary'], item['job_type'], item['job_state'], item['job_city'], item['job_address'], item['source_site'], item['url'], item['description'],item['hospital_id'], item['hospital_name'], item['Ref_num'], item['Loc_id'],item['specialty'], item['Specialty_id'])
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\item.py", line 93, in __getitem__
+    return self._values[key]
+KeyError: 'Ref_num'
