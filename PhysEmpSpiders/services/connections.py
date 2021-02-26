@@ -1,19 +1,19 @@
-#connection class NOT FUNCTIONAL
-import pymssql
+#Holds all connection info the the sql server
 
+import pymssql
 #class for the primary sql server
 class sqlserver_connection:
 #connection parameters for the primary sql server
     def __init__(self):
-        self.host = "70.179.173.208"
+        self.host = "70.179.168.244"
         self.port = 49172
         self.user = "rob"
-        self.password = "verysecurepassword"
+        self.password = "supersecurepassword"
         self.db = "physemp"
 
 #creates connection to the db
     def __connect__(self):
-        self.conn = pymysql.connect(host=self.host, user=self.user, password=self.password, db=self.db, port=self.port, cursorclass=pymysql.cursors.DictCursor)
+        self.conn = pymssql.connect(host=self.host, user=self.user, password=self.password, database=self.db, port=self.port, charset='utf8')
         self.cur = self.conn.cursor()
 
 #disconnects connection from the db
@@ -28,15 +28,30 @@ class sqlserver_connection:
             self.cur.execute(sql)
             result = self.cur.fetchall()
         except Exception as e:
-            print("SQL:" + str(sql) + "Connection Fetch Failed: " + str(e))
+            print("Connection Fetch Failed: " + str(e) + str(sql))
         self.__disconnect__()
+        #print("fetch returned: " + str(result) + " with sql: " + str(sql))
+        return result
+    
+    def fetchone(self, sql):
+        self.__connect__()
+        result = None
+        try:
+            self.cur.execute(sql)
+            result = self.cur.fetchone()
+        except Exception as e:
+            print("Connection Fetchone Failed: " + str(e) + str(sql))
+        self.__disconnect__()
+        #print("fetchone returned: " + str(result) + " with sql: " + str(sql))
         return result
 
 #runs sql commands that do no require a return value
-    def execute(self, sql):
+    def execute(self, sql, params):
         self.__connect__()
         try:
-            self.cur.execute(sql)
+            self.cur.execute(sql, params)
+            #self.conn.commit()
         except Exception as e:
-            print("Connection Execute Failed: " + str(e))
+            print("Connection Execute Failed: " + str(e) + str(sql))
+        #print("execute ran: " + str(sql) + str(params))
         self.__disconnect__()

@@ -2,8 +2,7 @@
 #custom class to handle translating state codes to full names or vice versa
 
 class states():
-
-    __init__(self):
+    def getAbbrev(self, state):
         us_state_abbrev = {
             'alabama': 'AL',
             'alaska': 'AK',
@@ -62,3 +61,19 @@ class states():
             'wisconsin': 'WI',
             'wyoming': 'WY'
         }
+        #check if state is already in abbreviated form
+        if(len(state) > 2):
+            abbrev = ''
+            try:
+                abbrev = us_state_abbrev[str(state).lower().strip()]
+            except:
+                abbrev = ''
+        else:
+            #flips the dictionary so short form is searchable
+            abbrev_us_state = dict(map(reversed, us_state_abbrev.items()))
+            #confirm abbreviation exists in the dict
+            if state in abbrev_us_state:
+                abbrev = state
+            else:
+                abbrev = ''
+        return abbrev
