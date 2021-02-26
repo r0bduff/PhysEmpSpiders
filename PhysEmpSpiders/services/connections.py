@@ -50,7 +50,7 @@ class sqlserver_connection:
         self.__connect__()
         try:
             self.cur.execute(sql, params)
-            #self.conn.commit()
+            self.conn.commit()
         except Exception as e:
             print("Connection Execute Failed: " + str(e) + str(sql))
         #print("execute ran: " + str(sql) + str(params))

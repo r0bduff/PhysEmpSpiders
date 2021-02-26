@@ -230,45 +230,10 @@ class PhysempspidersPipeline:
 #@method Check_Specialty
 #@description: Returns a Specialty Id that matches the given Specialty. Returns Null if no Specialty is given
     def Check_Specialty(self, item):
-        Specialty_Id = None #default return value
-        if item['specialty'] is not None:
-            match = self.route.spSelectSpecialty(item['specialty']) #returns exact matches to the given specialty
-            matching = []
-            if match is not None:
-                Specialty_Id = match[0]
-            else:
-                words = str(item['specialty']).replace(":",'').replace(',','').replace("'","").replace("/"," ").strip().split(' ')
-                for w in words:
-                    matches = self.route.spSelectSpecialtyLike(w) #returns any similar matches to the first word in the specialty
-                    if matches is not None:
-                        for i in matches:
-                            matching.append(i)
-                found = []
-                if matching is not None:
-                    #for each matching specialty given them a score based on how many word match our specialty
-                    for m in matching:
-                        cnt = 0
-                        for w in words:
-                            if w in m[1]:
-                                cnt += 1
-                        found.append([m[0], cnt])
-                    #check system same as Hospital Checker
-                    out = ["None", 0]
-                    if len(found) > 1:
-                        for f in found:
-                            if f[1] > out[1]:
-                                out[0] = f[0]
-                                out[1] = f[1]
-                        if out[1] > 1:
-                            Specialty_Id = out[0]
-                    elif len(found) == 1:
-                        for f in found:
-                            out[0] = f[0]
-                            out[1] = f[1]
-                            Specialty_Id = out[0]
-                                
-        return Specialty_Id #return a specialty id matches about 80% of the time
-    
+        self.getSpecialty = SpecialtyDetection() #new specialtyDetection object
+        Specialty_Id = self.getSpecialty.returnSpecialty(item['title'], item['specialty'])
+        return Specialty_Id
+
 #@method Insert_Emp
     def Insert_Emp(self, Recruiter, item):
         number = None
