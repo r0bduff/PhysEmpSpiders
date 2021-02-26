@@ -1,7 +1,9 @@
+#Updated to v2.0
 import scrapy
 from scraper_api import ScraperAPIClient
 from ..items import PhysempspidersItem as Item
 from datetime import datetime
+import re
 
 client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 
@@ -29,6 +31,18 @@ class PracticematchSpider(scrapy.Spider):
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
 
     def parse_listing(self, response):
+        #find emails
+        email = ''
+        findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+        if(findemail is not None):
+            email = findemail.group(0)
+
+        #find phone numbers
+        phone = ''
+        findphone = re.search(r'(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?', response.css('.col-sm-8').get())
+        if(findphone is not None):
+            phone = findphone.group(0)
+
         try:
             job = Item({ 
                 'title': response.meta['title'],
@@ -44,18 +58,21 @@ class PracticematchSpider(scrapy.Spider):
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 'source_site': 'PracticeMatch',
                 'url': response.meta['url'],
-                'description': '',
+                'description': str(response.css('.col-sm-8').extract()).replace('<','').replace('>','').replace('"','').replace("[",'').replace("]",'').replace("'",''),
                 'business_type': '',
                 'business_name': response.meta['business_name'],
                 'contact_name': '',
                 'contact_number': '',
                 'contact_email': '',
-                'business_state': response.meta['state'],
-                'business_city': response.meta['city'],
+                'business_state': '',
+                'business_city': '',
                 'business_address': '',
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
         except:
@@ -85,5 +102,8 @@ class PracticematchSpider(scrapy.Spider):
                 'business_zip': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
+                'Loc_id': '',
+                'Specialty_id': '',
             })
             yield job
