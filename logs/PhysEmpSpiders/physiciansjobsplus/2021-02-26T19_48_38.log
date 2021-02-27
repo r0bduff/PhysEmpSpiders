@@ -1,0 +1,10 @@
+2021-02-26 19:48:44 [scrapy.utils.log] INFO: Scrapy 2.4.1 started (bot: PhysEmpSpiders)
+2021-02-26 19:48:44 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.19041-SP0
+2021-02-26 19:48:44 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-02-26 19:48:44 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'PhysEmpSpiders',
+ 'CONCURRENT_REQUESTS': 10,
+ 'COOKIES_ENABLED': False,
+ 'LOG_FILE': 'logs\\PhysEmpSpiders\\physiciansjobsplus\\2021-02-26T19_48_38.log',
+ 'NEWSPIDER_MODULE': 'PhysEmpSpiders.spiders',
+ 'SPIDER_MODULES': ['PhysEmpSpiders.spiders']}

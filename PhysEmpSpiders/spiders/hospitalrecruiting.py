@@ -112,6 +112,7 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
                 'Loc_id': '',
                 'Specialty_id': '',
             })
@@ -144,6 +145,7 @@ class HospitalrecruitingSpider(scrapy.Spider):
                 'hospital_type': '',
                 'business_website': '',
                 'hospital_id': '',
+                'Ref_num': '',
                 'Loc_id': '',
                 'Specialty_id': '',
             })

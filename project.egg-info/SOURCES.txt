@@ -4,7 +4,6 @@ PhysEmpSpiders/__init__.py
 PhysEmpSpiders/items.py
 PhysEmpSpiders/middlewares.py
 PhysEmpSpiders/pipelines.py
-PhysEmpSpiders/scrapydweb_settings_v10.py
 PhysEmpSpiders/settings.py
 PhysEmpSpiders/spiders/PracticeMatch.py
 PhysEmpSpiders/spiders/__init__.py
