@@ -1,8 +1,22 @@
 #Stores all queries to the sql server
 
 from .connections import sqlserver_connection as connection
+from .connections import postgres_connection
 
-#Class for all query routes to the server
+#Class for all Queries to the PostGreSQL Server
+class PostGresRoutes:
+    def __init__(self):
+        self.conn = postgres_connection()
+    
+    def spInsertEmp(self, Recruiter_Id, Emp_name, Emp_email, Emp_number):
+        sql = "INSERT INTO employee (recruiter_id, employee_name, employee_email, employee_number) VALUES(%s, %s, %s, %s)"
+        self.conn.execute(sql, (Recruiter_Id, Emp_name, Emp_email, Emp_number))
+
+    
+    
+
+
+#Class for all query routes to the SQLserver
 class Routes:
     def __init__(self):
         self.conn = connection()

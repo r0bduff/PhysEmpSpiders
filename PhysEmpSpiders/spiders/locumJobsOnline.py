@@ -78,7 +78,7 @@ class LocumjobsonlineSpider(scrapy.Spider):
                 'job_address': response.css('.address-street::text').get(),
                 'date_posted': '',
                 'date_scraped': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                'source_site': 'website',
+                'source_site': 'locumJobsOnline',
                 'url': response.meta['url'],
                 'description': response.css('.mb-5~ .mb-5').get().replace("'",'').replace(',',''),
                 'business_type': '',
