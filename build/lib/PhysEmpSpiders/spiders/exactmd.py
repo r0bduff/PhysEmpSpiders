@@ -17,7 +17,7 @@ class ExactmdSpider(scrapy.Spider):
     #custom_settings={ 'FEED_URI': "data/exactmd_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
     def start_requests(self):
-        lastpagenum = 1837
+        lastpagenum = 1853
         for i in range(lastpagenum):
             next_page = 'https://exactmd.com/jobs/all/all/all/all?page=' + str(i) + '&sort=date_desc'
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

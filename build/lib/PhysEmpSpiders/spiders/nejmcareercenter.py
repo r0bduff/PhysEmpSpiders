@@ -17,7 +17,7 @@ class NejmcareercenterSpider(scrapy.Spider):
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
     def start_requests(self):
-        lastpagenum = 311
+        lastpagenum = 429
         for i in range(lastpagenum):
             next_page = 'https://www.nejmcareercenter.org/jobs/' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

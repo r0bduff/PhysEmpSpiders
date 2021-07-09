@@ -17,7 +17,7 @@ class LocumjobsonlineSpider(scrapy.Spider):
     #custom_settings={ 'FEED_URI': "LocumJobsOnline_%(time)s.csv", 'FEED_FORMAT': 'csv'}
 
     def start_requests(self):
-        lastpagenum = 1213
+        lastpagenum = 1462
         for i in range(lastpagenum):
             next_page = 'https://www.locumjobsonline.com/jobs/search/' + str(i) + '?advanced=0'
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

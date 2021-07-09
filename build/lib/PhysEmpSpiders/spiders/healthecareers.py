@@ -16,7 +16,7 @@ class HealthecareersSpider(scrapy.Spider):
     custom_settings={ 'FEED_URI': "healthecareers_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     
     def start_requests(self):
-        lastpagenum = 106
+        lastpagenum = 136
         for i in range(lastpagenum):
             next_page = 'https://www.healthecareers.com/search-jobs/?catid=&ps=100&pg=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

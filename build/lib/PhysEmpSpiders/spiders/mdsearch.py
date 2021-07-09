@@ -13,7 +13,7 @@ class MdsearchSpider(scrapy.Spider):
     custom_settings={ 'FEED_URI': "mdsearch_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     
     def start_requests(self):
-        lastpagenum = 2239
+        lastpagenum = 2498
         for i in range(lastpagenum):
             next_page = 'https://www.mdsearch.com/physician-jobs/' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

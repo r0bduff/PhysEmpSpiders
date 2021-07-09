@@ -1,0 +1,866 @@
+2021-07-09 12:40:44 [scrapy.utils.log] INFO: Scrapy 2.4.1 started (bot: PhysEmpSpiders)
+2021-07-09 12:40:44 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.19041-SP0
+2021-07-09 12:40:44 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-07-09 12:40:44 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'PhysEmpSpiders',
+ 'CONCURRENT_REQUESTS': 10,
+ 'COOKIES_ENABLED': False,
+ 'LOG_FILE': 'logs\\PhysEmpSpiders\\PracticeMatch\\2021-07-09T12_40_33.log',
+ 'NEWSPIDER_MODULE': 'PhysEmpSpiders.spiders',
+ 'SPIDER_MODULES': ['PhysEmpSpiders.spiders']}
+2021-07-09 12:40:44 [scrapy.extensions.telnet] INFO: Telnet Password: d51096d23936fa69
+2021-07-09 12:40:44 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2021-07-09 12:40:44 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2021-07-09 12:40:45 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2021-07-09 12:40:45 [scrapy.middleware] INFO: Enabled item pipelines:
+['PhysEmpSpiders.pipelines.PhysempspidersPipeline']
+2021-07-09 12:40:45 [scrapy.core.engine] INFO: Spider opened
+2021-07-09 12:40:45 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2021-07-09 12:40:45 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2021-07-09 12:40:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F633846%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D1&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F572861%2Ffamily%252dmedicine%2Findiana%2Fcrawfordsville%2Fascension%252dst%252e%252dvincent%252dcrawfordsville%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D14&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F504725%2Fobstetrics%252dgynecology%2Findiana%2Fkokomo%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%252d%2528kokomo%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D12&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F633846%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D1&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:51 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F572861%2Ffamily%252dmedicine%2Findiana%2Fcrawfordsville%2Fascension%252dst%252e%252dvincent%252dcrawfordsville%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D14&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (400) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%3Cspan%3E%3Ca+href%3D%22%2Fphysicians%2Fjobs%2F%3Fpjsid%3Db956f9d4-9989-4937-85f0-fc3718407f38%26amp%3Bpage_id%3D2%22%3E%C2%BB%3C%2Fa%3E%3C%2Fspan%3E&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F504725%2Fobstetrics%252dgynecology%2Findiana%2Fkokomo%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%252d%2528kokomo%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D12&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:51 [scrapy.spidermiddlewares.httperror] INFO: Ignoring response <400 https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%3Cspan%3E%3Ca+href%3D%22%2Fphysicians%2Fjobs%2F%3Fpjsid%3Db956f9d4-9989-4937-85f0-fc3718407f38%26amp%3Bpage_id%3D2%22%3E%C2%BB%3C%2Fa%3E%3C%2Fspan%3E&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python>: HTTP status code is not handled or not allowed
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F641171%2Fobstetrics%252dgynecology%2Findiana%2Ffishers%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%252d%2528fishers%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D16&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F641171%2Fobstetrics%252dgynecology%2Findiana%2Ffishers%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%252d%2528fishers%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D16&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F571215%2Fpsychology%2Findiana%2Fevansville%2Fst%252e%252dvincent%252dcenter%252dfor%252dchildren%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D15&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F621771%2Fobstetrics%252dgynecology%2Findiana%2Fanderson%2Fascension%252dst%252e%252dvincent%252danderson%252dregional%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D10&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:51 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F571215%2Fpsychology%2Findiana%2Fevansville%2Fst%252e%252dvincent%252dcenter%252dfor%252dchildren%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D15&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:51 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F621771%2Fobstetrics%252dgynecology%2Findiana%2Fanderson%2Fascension%252dst%252e%252dvincent%252danderson%252dregional%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D10&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F583499%2Fpsychology%2Findiana%2Fevansville%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%252d%2528on%252dsite%252dat%252dst%252e%252dvincent%252devansville%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D25&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F618847%2Fneurological%252dsurgery%2Fohio%2Fmansfield%2Fohiohealth%252dmansfield%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D24&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:52 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F583499%2Fpsychology%2Findiana%2Fevansville%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%252d%2528on%252dsite%252dat%252dst%252e%252dvincent%252devansville%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D25&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F622154%2Fobstetrics%252dgynecology%2Findiana%2Fanderson%2Fascension%252dst%252e%252dvincent%252danderson%252dregional%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D11&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:52 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F618847%2Fneurological%252dsurgery%2Fohio%2Fmansfield%2Fohiohealth%252dmansfield%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D24&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:52 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F622154%2Fobstetrics%252dgynecology%2Findiana%2Fanderson%2Fascension%252dst%252e%252dvincent%252danderson%252dregional%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D11&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F497839%2Fchild%252dneurology%2Findiana%2Findianapolis%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D21&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F654287%2Fcardiology%2Futah%2Fogden%2Fmckay%252ddee%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D23&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:53 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F497839%2Fchild%252dneurology%2Findiana%2Findianapolis%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D21&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:53 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F654287%2Fcardiology%2Futah%2Fogden%2Fmckay%252ddee%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D23&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F628502%2Finfectious%252ddiseases%2Findiana%2Findianapolis%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D20&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:55 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F628502%2Finfectious%252ddiseases%2Findiana%2Findianapolis%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D20&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F516730%2Fotolaryngology%2Findiana%2Findianapolis%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D18&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:57 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F516730%2Fotolaryngology%2Findiana%2Findianapolis%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D18&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F600679%2Fobstetrics%252dgynecology%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D7&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:57 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F600679%2Fobstetrics%252dgynecology%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D7&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F626483%2Fendocrinology%2Findiana%2Fevansville%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%252d%2528on%252dsite%252dat%252dst%252e%252dvincent%252devansville%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D17&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:57 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F626483%2Fendocrinology%2Findiana%2Fevansville%2Fpeyton%252dmanning%252dchildren%2527s%252dhospital%252d%2528on%252dsite%252dat%252dst%252e%252dvincent%252devansville%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D17&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:40:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F546639%2Fneurology%2Findiana%2Fkokomo%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%252d%2528kokomo%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D5&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:40:58 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F546639%2Fneurology%2Findiana%2Fkokomo%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%252d%2528kokomo%2529%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D5&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F654289%2Forthopedic%252dsurgery%2Fcalifornia%2Fsan%252dfrancisco%2Fsan%252dfrancisco%252dva%252dhealthcare%252dcenter%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D9&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:02 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F654289%2Forthopedic%252dsurgery%2Fcalifornia%2Fsan%252dfrancisco%2Fsan%252dfrancisco%252dva%252dhealthcare%252dcenter%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D9&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F632603%2Fobstetrics%252dgynecology%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D8&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:02 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F632603%2Fobstetrics%252dgynecology%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D8&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F562910%2Fpsychiatry%2Fnorth%252dcarolina%2Fcharlotte%2Fatrium%252dhealth%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D19&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:03 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F562910%2Fpsychiatry%2Fnorth%252dcarolina%2Fcharlotte%2Fatrium%252dhealth%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D19&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F626621%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D2&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:07 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F626621%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D2&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F591872%2Fotolaryngology%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D13&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:11 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F591872%2Fotolaryngology%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D13&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F495337%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D4&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:18 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F495337%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D4&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F559086%2Furgent%252dcare%2Fohio%2Fcolumbus%2Fohiohealth%252durgent%252dcare%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D22&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:23 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F559086%2Furgent%252dcare%2Fohio%2Fcolumbus%2Fohiohealth%252durgent%252dcare%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D22&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F648607%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D3&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:32 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F648607%2Finternal%252dmedicine%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D3&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F637077%2Fhospitalist%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D6&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:41:41 [scrapy.core.scraper] ERROR: Spider error processing <GET https://api.scraperapi.com/?url=www.practicematch.com%2Fphysicians%2Fjob-details.cfm%2F637077%2Fhospitalist%2Findiana%2Findianapolis%2Fascension%252dmedical%252dgroup%252dst%252e%252dvincent%2F%3Fpjsid%3DB956F9D4-9989-4937-85F0-FC3718407F38%26row%3D6&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fwww.practicematch.com%2Fphysicians%2Fjobs%2F&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\python.py", line 353, in __next__
+    return next(self.data)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\core\spidermw.py", line 62, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\spiders\PracticeMatch.py", line 36, in parse_listing
+    findemail = re.search(r'[\w\.-]+@[\w\.-]+', response.css('.col-sm-8').get())
+  File "c:\users\rduff\anaconda3\lib\re.py", line 201, in search
+    return _compile(pattern, flags).search(string)
+TypeError: expected string or bytes-like object
+2021-07-09 12:41:41 [scrapy.core.engine] INFO: Closing spider (finished)
+2021-07-09 12:41:41 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 17885,
+ 'downloader/request_count': 27,
+ 'downloader/request_method_count/GET': 27,
+ 'downloader/response_bytes': 453258,
+ 'downloader/response_count': 27,
+ 'downloader/response_status_count/200': 26,
+ 'downloader/response_status_count/400': 1,
+ 'elapsed_time_seconds': 55.475164,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2021, 7, 9, 17, 41, 41, 178985),
+ 'httperror/response_ignored_count': 1,
+ 'httperror/response_ignored_status_count/400': 1,
+ 'log_count/DEBUG': 27,
+ 'log_count/ERROR': 25,
+ 'log_count/INFO': 11,
+ 'request_depth_max': 1,
+ 'response_received_count': 27,
+ 'scheduler/dequeued': 27,
+ 'scheduler/dequeued/memory': 27,
+ 'scheduler/enqueued': 27,
+ 'scheduler/enqueued/memory': 27,
+ 'spider_exceptions/TypeError': 25,
+ 'start_time': datetime.datetime(2021, 7, 9, 17, 40, 45, 703821)}
+2021-07-09 12:41:41 [scrapy.core.engine] INFO: Spider closed (finished)
