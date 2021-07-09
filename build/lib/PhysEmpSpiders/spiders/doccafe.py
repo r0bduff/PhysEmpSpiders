@@ -9,8 +9,8 @@ client = ScraperAPIClient('f2a3c4d1c7d60b6d2eb03c55108e3960')
 class DoccafeSpider(scrapy.Spider):
     name = 'doccafe'
 
-    url_link = 'https://www.doccafe.com/jobs/search?posted_period=all&results_per_page=50&page=682'
-
+    url_link = 'https://www.doccafe.com/jobs/search?posted_period=all&results_per_page=50&page=1'
+    #old 682 pg
     start_urls = [client.scrapyGet(url = url_link)]
 
     #custom_settings={ 'FEED_URI': "DocCafe_%(time)s.csv", 'FEED_FORMAT': 'csv'}kjdf
