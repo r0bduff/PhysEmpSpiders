@@ -16,7 +16,7 @@ class JamanetworkSpider(scrapy.Spider):
 
     #custom_settings={ 'FEED_URI': "data/jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 338
+        lastpagenum = 262
         for i in range(lastpagenum):
             next_page = 'https://careers.jamanetwork.com/searchjobs/?countrycode=US&Page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

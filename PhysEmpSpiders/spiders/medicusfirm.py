@@ -12,7 +12,7 @@ class MedicusfirmSpider(scrapy.Spider):
 
     #custom_settings={ 'FEED_URI': "jamaNetwork_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 37
+        lastpagenum = 45
         for i in range(lastpagenum):
             next_page = 'https://www.themedicusfirm.com/physician/jobs/page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

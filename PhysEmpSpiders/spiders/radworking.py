@@ -12,7 +12,7 @@ class RadworkingSpider(scrapy.Spider):
 
     #custom_settings={ 'FEED_URI': "radworking_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 28
+        lastpagenum = 35
         for i in range(lastpagenum):
             next_page = 'http://www.radworking.com/jobs/radiology-jobs.html?page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)

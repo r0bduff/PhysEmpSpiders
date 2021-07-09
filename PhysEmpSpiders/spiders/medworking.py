@@ -11,7 +11,7 @@ class MedworkingSpider(scrapy.Spider):
     name = 'medworking'
     #custom_settings={ 'FEED_URI': "medworking_%(time)s.csv", 'FEED_FORMAT': 'csv'}
     def start_requests(self):
-        lastpagenum = 172
+        lastpagenum = 200
         for i in range(lastpagenum):
             next_page = 'http://www.medworking.com/jobs/physician-advanced-search.html?subspecialtyid=&scope=0&duration=0&workload=3&compensation=0&locumrate=0&positiontype=0&keywords=&st=0&page=' + str(i)
             yield scrapy.Request(client.scrapyGet(url= next_page), callback=self.parse)
