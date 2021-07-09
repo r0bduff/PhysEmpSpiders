@@ -1,0 +1,414 @@
+2021-07-09 12:48:10 [scrapy.utils.log] INFO: Scrapy 2.4.1 started (bot: PhysEmpSpiders)
+2021-07-09 12:48:10 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.8.3 (default, Jul  2 2020, 17:30:36) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.19041-SP0
+2021-07-09 12:48:10 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2021-07-09 12:48:10 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'PhysEmpSpiders',
+ 'CONCURRENT_REQUESTS': 10,
+ 'COOKIES_ENABLED': False,
+ 'LOG_FILE': 'logs\\PhysEmpSpiders\\adventhealth\\2021-07-09T12_48_04.log',
+ 'NEWSPIDER_MODULE': 'PhysEmpSpiders.spiders',
+ 'SPIDER_MODULES': ['PhysEmpSpiders.spiders']}
+2021-07-09 12:48:10 [scrapy.extensions.telnet] INFO: Telnet Password: e893771cf7837569
+2021-07-09 12:48:10 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2021-07-09 12:48:10 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2021-07-09 12:48:10 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2021-07-09 12:48:10 [scrapy.middleware] INFO: Enabled item pipelines:
+['PhysEmpSpiders.pipelines.PhysempspidersPipeline']
+2021-07-09 12:48:10 [scrapy.core.engine] INFO: Spider opened
+2021-07-09 12:48:10 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2021-07-09 12:48:10 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2021-07-09 12:48:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D0&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D4&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D6&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D2&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D3&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D5&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:13 [scrapy.dupefilters] DEBUG: Filtered duplicate request: <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Faccount-representative-ll-billing-collections-and-denials%2FJ3R6GY6P487TDPT3HPB&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+2021-07-09 12:48:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D7&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Fmedical-records-analyst-prn-days%2FJ3Q7DG6WNF3Y70XQ2JP&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D0&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:48:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D10&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:35 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Ref_num': '21022096',
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': 'DeLand',
+ 'business_name': 'AdventHealth',
+ 'business_state': 'FL',
+ 'business_type': 'Hospital',
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '7/8/2021',
+ 'date_scraped': '2021-07-09 12:48:14',
+ 'description': 'div class=jdp-job-description-card content-card\\n    h2 '
+                'class=content-card-headerJob Description/h2\\n    '
+                'brDescriptionbrpstrongMedical Records Analyst AdventHealth '
+                'Deland/strong/p p/p pstrongLocation Address:/strong\\xa0701 '
+                'West Plymouth Avenue, Deland Florida 32720/p p/p pstrongTop '
+                'Reasons To Work At AdventHealth Deland/strong/p pCareer '
+                'growth and advancement potential/p pHealth Insurance '
+                'Coverage/p pGreat benefits such as: Educational '
+                'Reimbursement/p p/p pstrongWork Hours/Shift:/strong/p pPer '
+                'Diem, Days/p p/p pstrongYou Will Be Responsible For:/strong/p '
+                'ul \\tliUpdates chart deficiency information in EMR as '
+                'physicians complete records./li \\tliAssists physicians with '
+                'record completion and their message center./li \\tliCompletes '
+                'operative report suspension or notification process daily as '
+                'deemed necessary according to the Medical Staff Rules and '
+                'Regulations.\\xa0 /li \\tliPerforms physician suspension '
+                'process as required by the Medical Staff Rules and '
+                'Regulations; Compiles delinquent reports by physician; '
+                'Generates computerized suspension notification to physicians; '
+                'Notifies physicians via telephone call/fax of impending '
+                'suspension and subsequent suspension if records are not '
+                'completed by deadline./li \\tliMonitors daily the list of '
+                'physicians on suspension, updates the list as physicians '
+                'complete delinquent records, and promptly sends notifications '
+                'to insure compliance with Joint Commission requirements and '
+                'Health Information Management (HIM) Department performance '
+                'standards./li \\tliProcesses requests for health information '
+                'in a timely and accurate manner for transfer patients as '
+                'deemed necessary by facility location./li \\tliProcesses '
+                'requests for health information from physicians and '
+                'healthcare facilities as deemed necessary by facility '
+                'location./li \\tliProcesses refused orders and unsigned '
+                'documents daily and ascertains the accuracy of the '
+                'information./li \\tliUpdates baby names from Live Birth '
+                'Review Sheets daily as deemed necessary by facility '
+                'location./li \\tliReports the daily status update for the HIM '
+                'performance measure report and conducts the operative report '
+                'monitor for the monthly scorecard report./li \\tliPerforms '
+                'Powerchart validation as deemed necessary by facility '
+                'location./li \\tliAnswers incoming telephone calls, '
+                'determines nature of calls, and routes to appropriate person '
+                'or department as deemed necessary by facility location./li '
+                '\\tliPerforms any and all other duties as assigned or deemed '
+                'necessary./li /ul QualificationsbrpstrongWhat You Will '
+                'Need:/strong/p pbuKNOWLEDGE AND SKILLS REQUIRED:/u/b/p ul '
+                '\\tliComputer proficiency/li \\tliMultitasking/li '
+                '\\tliMedical terminology preferred./li /ul pbuEDUCATION AND '
+                'EXPERIENCE REQUIRED:/u/b/p ul \\tliHigh school graduate or '
+                'equivalent.\\xa0 /li \\tliMinimum one (1) year previous '
+                'hospital Health Information Management experience./li '
+                '\\tliProficiency typically reached with on-the-job training '
+                'and orientation within one (1) year./li /ul p/p '
+                'pbiuLICENSURE, CERTIFICATION OR REGISTRATION '
+                'PREFERRED:/u/i/b/p ul \\tliRegistered Health Information '
+                'Technician (RHIT) registration/li /ul p/p pstrongJob '
+                'Summary:/strong/p pPerforms processes associated with '
+                'physician record completion which include assisting '
+                'physicians with incomplete records, physician notification of '
+                'incomplete and delinquent medical records, and physician '
+                'suspension procedures. Assures that all information is '
+                'present, readily accessible, and properly entered into the '
+                'hospital’s Electronic Medical Record (EMR). Performs release '
+                'of information in accordance with department policy, state, '
+                'and federal statutes.i Responsibility to adhere to the '
+                'Florida Hospital Corporate Compliance plan, to the rules and '
+                'regulations of all local, state and Federal agencies, and to '
+                'the standards of all accrediting bodies./i/p brThis facility '
+                'is an equal opportunity employer and complies with federal, '
+                'state and local anti-discrimination laws, regulations and '
+                'ordinances.\\n/div',
+ 'hospital_id': None,
+ 'hospital_name': 'AdventHealth Fish Memorial',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'DeLand',
+ 'job_salary': None,
+ 'job_state': 'FL',
+ 'job_type': 'Per Diem',
+ 'source_site': 'adventhealth',
+ 'specialty': 'Health Information Management',
+ 'title': 'Medical Records Analyst PRN Days',
+ 'url': 'jobs.adventhealth.com/en-US/job/medical-records-analyst-prn-days/J3Q7DG6WNF3Y70XQ2JP'}
+Traceback (most recent call last):
+  File "src\pymssql.pyx", line 636, in pymssql.connect
+  File "src\_mssql.pyx", line 1964, in _mssql.connect
+  File "src\_mssql.pyx", line 682, in _mssql.MSSQLConnection.__init__
+  File "src\_mssql.pyx", line 1690, in _mssql.maybe_raise_MSSQLDatabaseException
+_mssql.MSSQLDatabaseException: (20009, b'DB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\nDB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 30, in process_item
+    if(self.Check_url(item['url'])==False):
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 144, in Check_url
+    test = self.route.spSelectJobURL(url)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\routes.py", line 105, in spSelectJobURL
+    return self.conn.fetchone(sql)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\connections.py", line 94, in fetchone
+    self.__connect__()
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\connections.py", line 73, in __connect__
+    self.conn = pymssql.connect(host=self.host, user=self.user, password=self.password, database=self.db, port=self.port, charset='utf8')
+  File "src\pymssql.pyx", line 642, in pymssql.connect
+pymssql.OperationalError: (20009, b'DB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\nDB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\n')
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D9&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Fcommunications-specialist-at-ahu-pt-day%2FJ3W5V56DDLPTLT11G4P&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D2&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Fcommunications-center-manager-ahu-ft-day%2FJ3N7GP6YLLGMKMZ35FT&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D5&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D1&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Fct-technologist%2FJ3W7CQ6BNR7XLJGBHBC&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D4&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Fprn-ct-mri-technologist-adventhealth-imaging-west-florida-new-tampa-care-pavilio%2FJ3R2DR6MXC3XJWNR5CB&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D6&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D8&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: None)
+2021-07-09 12:48:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://api.scraperapi.com/?url=jobs.adventhealth.com%2Fen-US%2Fjob%2Fsurgical-tech-first-assist-ft-days-heart-of-florida%2FJ3V7755XG8WWVTTC6YP&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python> (referer: https://api.scraperapi.com/?url=https%3A%2F%2Fjobs.adventhealth.com%2Fen-US%2Fsearch%3Fpagenumber%3D2&api_key=f2a3c4d1c7d60b6d2eb03c55108e3960&scraper_sdk=python)
+2021-07-09 12:48:56 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Ref_num': '21021703',
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': 'Orlando',
+ 'business_name': 'AdventHealth',
+ 'business_state': 'FL',
+ 'business_type': 'Hospital',
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '7/8/2021',
+ 'date_scraped': '2021-07-09 12:48:35',
+ 'description': 'div class=jdp-job-description-card content-card\\n    h2 '
+                'class=content-card-headerJob Description/h2\\n    '
+                'brDescriptionbrpstrongYOU ARE REQUIRED TO SUBMIT A RESUME AND '
+                'WRITING SAMPLE\\xa0WITH YOUR APPLICATION!/strongbr '
+                'strong\\xa0br Communications Specialist at\\xa0AdventHealth '
+                'University/strong/p pstrongLocation '
+                'Address/strong:\\xa0\\xa0671 Winyah Dr, Orlando, FL 32803/p '
+                'pstrongTop Reasons to work at AdventHealth '
+                'University\\xa0/strong/p pOur mission is to provide an '
+                'environment where students can develop spiritually, '
+                'intellectually, socially, and physically while pursuing '
+                'professional expertise integrated with Christian values./p '
+                'pstrongWork Hours/Shift:/strong \\xa0 Full Time / Day/p '
+                'p\\xa0br strongYou Will Be Responsible For:/strong/p '
+                'pDemonstrates behaviors at AdventHealth University in harmony '
+                'with AHU’s “Four Words” of bNurture, Excellence, '
+                'Spirituality/b, and bStewardship/b as well as AdventHealth’s '
+                'Performance Standards of b“Keep Me Safe, Love Me, Make it '
+                'Easy, /bandb Own It.”/b/p ul \\tliCreate and post content for '
+                'AHU social media channels/li \\tliCoordinate with the '
+                'AdventHealth digital content strategy team for the creation '
+                'of graphic content/li \\tliMaintains brand integrity across '
+                'all social media properties/li \\tliCoordinate in the '
+                'creation of social media and communication’s content across '
+                'multiple media channels with assistance from the marketing '
+                'project manager/li \\tliCoordinate with CFD digital content '
+                'strategy team and corporate communications in the creation of '
+                'all social media properties/li \\tliCreate written content as '
+                'needed/li \\tliExecute administrative responsibility for '
+                'maintaining and monitoring all social media '
+                'properties\\xa0owned by AHU/li \\tliAssist in PR special '
+                'events as needed/li \\tliAttend specified university events '
+                'for social media purposes/li /ul p/p '
+                'QualificationsbrpstrongWhat You Will Need:br '
+                'Required:/strong/p pbuEDUCATION AND EXPERIENCE '
+                'REQUIRED:/u/b/p ul \\tliAS degree/li \\tliMinimum of one-year '
+                'of experience in social media management and writing/li /ul '
+                'pbuKNOWLEDGE AND SKILLS REQUIRED:/u/b/p ul \\tliSocial '
+                'Media/li \\tliComputer skills (Microsoft Office Suite)/li '
+                '\\tliWriting and copy editing skills/li \\tliCommunication '
+                'skills/li /ul ul /ul pstrongob Summary:/strong/p pThe '
+                'emCommunications Specialist (CS)/em works with other members '
+                'of the AdventHealth University (AHU) Marketing, Public '
+                'Relations, and Philanthropy teams to support internal and '
+                'external AHU communication strategies that advance the '
+                'mission, brand, and reputation of AHU with students and key '
+                'constituents.\\xa0 The CS prime function will be support '
+                'social media strategies.\\xa0 The CS will also coordinate '
+                'with the AHU marketing and AdventHealth MarCom team on shared '
+                'iniatives, support requests, and communications efforts '
+                'related to social media.\\xa0 They coodinate with the '
+                'marketing director and project manager on the creation of '
+                'digital content pieces for the AHU marketing department and '
+                'social media properties.\\xa0 They assist in the content '
+                'creation and reputation monitoring of all AHU related social '
+                'media properties. The CS will liaison with the AdventHealth '
+                'Content Strategy team to seek opportunities to cobrand and '
+                'share stories.\\xa0 They written content as needed and '
+                'coordinate with the AHU marketing director to work with the '
+                'external communications team at AdventHealth to advance AHU '
+                'reputation and brand awareness. Lastly, they will engage in a '
+                'variety of specific higher education communication '
+                'initiatives led by the president of AHU such as philanthropic '
+                'communications with the AdventHealth Foundation and with the '
+                'Adventist higher education community./p p/p brThis facility '
+                'is an equal opportunity employer and complies with federal, '
+                'state and local anti-discrimination laws, regulations and '
+                'ordinances.\\n/div',
+ 'hospital_id': None,
+ 'hospital_name': 'AdventHealth Central Florida',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Orlando',
+ 'job_salary': None,
+ 'job_state': 'FL',
+ 'job_type': 'Part-Time',
+ 'source_site': 'adventhealth',
+ 'specialty': 'Marketing & Communications',
+ 'title': 'Communications Specialist at AHU-PT/Day',
+ 'url': 'jobs.adventhealth.com/en-US/job/communications-specialist-at-ahu-pt-day/J3W5V56DDLPTLT11G4P'}
+Traceback (most recent call last):
+  File "src\pymssql.pyx", line 636, in pymssql.connect
+  File "src\_mssql.pyx", line 1964, in _mssql.connect
+  File "src\_mssql.pyx", line 682, in _mssql.MSSQLConnection.__init__
+  File "src\_mssql.pyx", line 1690, in _mssql.maybe_raise_MSSQLDatabaseException
+_mssql.MSSQLDatabaseException: (20009, b'DB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\nDB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 30, in process_item
+    if(self.Check_url(item['url'])==False):
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 144, in Check_url
+    test = self.route.spSelectJobURL(url)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\routes.py", line 105, in spSelectJobURL
+    return self.conn.fetchone(sql)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\connections.py", line 94, in fetchone
+    self.__connect__()
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\connections.py", line 73, in __connect__
+    self.conn = pymssql.connect(host=self.host, user=self.user, password=self.password, database=self.db, port=self.port, charset='utf8')
+  File "src\pymssql.pyx", line 642, in pymssql.connect
+pymssql.OperationalError: (20009, b'DB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\nDB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\n')
+2021-07-09 12:49:17 [scrapy.core.scraper] ERROR: Error processing {'Loc_id': None,
+ 'Ref_num': '21021676',
+ 'Specialty_id': None,
+ 'business_address': None,
+ 'business_city': 'Orlando',
+ 'business_name': 'AdventHealth',
+ 'business_state': 'FL',
+ 'business_type': 'Hospital',
+ 'business_website': None,
+ 'business_zip': None,
+ 'contact_email': None,
+ 'contact_name': None,
+ 'contact_number': None,
+ 'date_posted': '7/3/2021',
+ 'date_scraped': '2021-07-09 12:48:56',
+ 'description': 'div class=jdp-job-description-card content-card\\n    h2 '
+                'class=content-card-headerJob Description/h2\\n    '
+                'brDescriptionbr \\t \\t\\t \\t \\t \\t\\t \\t\\t\\t '
+                '\\t\\t\\tpYOU ARE REQUIRED TO UPLOAD A RESUME, '
+                'LICENSURE/CERTIFICATION WITH YOUR APPLICATION!/p \\t\\t\\t '
+                '\\t\\t \\t  pbCommunications Center Manager '
+                '-\\xa0\\xa0AdventHealth University/b/p div/div divbTop '
+                'Reasons to work at AdventHealth University/b/div div pOur '
+                'mission is to provide an environment where students can '
+                'develop spiritually, intellectually, socially, and physically '
+                'while pursuing professional expertise integrated with '
+                'Christian values./p /div div/div pstrongWork '
+                'Hours/Shift:\\xa0 \\xa0Full Time / Day/strong/p '
+                'divb\\xa0/b/div divstrongYou Will Be Responsible '
+                'For:/strong\\xa0\\xa0\\xa0 /div pDemonstrates behaviors at '
+                'AdventHealth University in harmony with the “Four Words” '
+                'bNurture, Excellence, Spirituality, and Stewardship/b/p ul '
+                '\\tliDevelop objectives and accountability metrics for the '
+                'Communication Center’s day-to-day activities /li \\tliDevelop '
+                'and oversee the execution of communications plans to '
+                'facilitate the cultivation, evaluation, and admissions '
+                'processes /li \\tliProvide training to all Communication '
+                'Center staff to ensure consistency in the professionalism, '
+                'tone, accuracy, and timeliness of verbal and written '
+                'communication with leads and applicants/li \\tliCollaborate '
+                'with the Director of Admissions on designing and refining '
+                'communication plans for lead and applicant cultivation/li '
+                '\\tliUtilize the CRM and SIS effectively to support the '
+                'execution of the communication plans/li \\tliIdentify key '
+                'populations of leads and applicants for retargeting '
+                'campaigns/li /ul QualificationsbrpstrongWhat Will You '
+                'Need:/strong\\xa0\\xa0\\xa0\\xa0\\xa0\\xa0\\xa0\\xa0/p '
+                'div/div divbuEDUCATION REQUIRED/u:/b/div ul \\tliBachelor’s '
+                'Degree in Business, Communications, Data Analytics, or other '
+                'related field /li /ul pbuEXPERIENCE REQUIRED/u:/b/p ul '
+                '\\tliMust possess a general knowledge of the higher education '
+                'admissions processes and customer service and communication '
+                'strategie/li /ul pbuEXPERIENCE PREFERRED/u/b/p ul \\tliOne or '
+                'more years of customer relations experience/li /ul '
+                'divb\\xa0/bbEDUCATION AND EXPERIENCE PREFERRED/b:/div ul '
+                '\\tliAssociate’s degree in Business, Finance, Marketing, '
+                'Public Relations, Journalism, English, or other '
+                'Healthcare-related field./li \\tliThree year experience in '
+                'customer service related field./li /ul divb\\xa0/b/div '
+                'divbJob Summary:/b/div pThe Communication Center Manager '
+                'supervises the daily operations and Communication Center '
+                'staff, aiming for maximum efficiency and excellent customer '
+                'service. The Communication Center Manager will also ensure '
+                'that technology is utilized to a maximum and that staff are '
+                'well-organized and productive. The Communication Center '
+                'Manager communicates and collaborates regularly with the '
+                'Admissions Managers to ensure lead and applicant cultivation '
+                'is paced in alignment to communication and turnaround time '
+                'goals. The Communication Center Manager is charged with '
+                'upholding policy and procedure set by the Admissions '
+                'Department, University, and its committees. The Communication '
+                'Center Manager actively exemplifies outstanding customer '
+                'service and accepts responsibility in maintaining '
+                'relationships that are equally respectful to all./p brThis '
+                'facility is an equal opportunity employer and complies with '
+                'federal, state and local anti-discrimination laws, '
+                'regulations and ordinances.\\n/div',
+ 'hospital_id': None,
+ 'hospital_name': 'AdventHealth Central Florida',
+ 'hospital_type': None,
+ 'job_address': None,
+ 'job_city': 'Orlando',
+ 'job_salary': None,
+ 'job_state': 'FL',
+ 'job_type': 'Full-Time',
+ 'source_site': 'adventhealth',
+ 'specialty': 'Staff',
+ 'title': 'Communications Center Manager-AHU - FT/Day',
+ 'url': 'jobs.adventhealth.com/en-US/job/communications-center-manager-ahu-ft-day/J3N7GP6YLLGMKMZ35FT'}
+Traceback (most recent call last):
+  File "src\pymssql.pyx", line 636, in pymssql.connect
+  File "src\_mssql.pyx", line 1964, in _mssql.connect
+  File "src\_mssql.pyx", line 682, in _mssql.MSSQLConnection.__init__
+  File "src\_mssql.pyx", line 1690, in _mssql.maybe_raise_MSSQLDatabaseException
+_mssql.MSSQLDatabaseException: (20009, b'DB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\nDB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\n')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\users\rduff\anaconda3\lib\site-packages\twisted\internet\defer.py", line 654, in _runCallbacks
+    current.result = callback(current.result, *args, **kw)
+  File "c:\users\rduff\anaconda3\lib\site-packages\scrapy\utils\defer.py", line 150, in f
+    return deferred_from_coro(coro_f(*coro_args, **coro_kwargs))
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 30, in process_item
+    if(self.Check_url(item['url'])==False):
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\pipelines.py", line 144, in Check_url
+    test = self.route.spSelectJobURL(url)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\routes.py", line 105, in spSelectJobURL
+    return self.conn.fetchone(sql)
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\connections.py", line 94, in fetchone
+    self.__connect__()
+  File "C:\Users\rduff\anaconda3\Lib\site-packages\scrapydweb\data\demo_projects\PhysEmpSpiders\PhysEmpSpiders\services\connections.py", line 73, in __connect__
+    self.conn = pymssql.connect(host=self.host, user=self.user, password=self.password, database=self.db, port=self.port, charset='utf8')
+  File "src\pymssql.pyx", line 642, in pymssql.connect
+pymssql.OperationalError: (20009, b'DB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\nDB-Lib error message 20009, severity 9:\nUnable to connect: Adaptive Server is unavailable or does not exist (70.179.168.244)\nNet-Lib error during Unknown error (10060)\n')

@@ -62,7 +62,7 @@ class postgres_connection:
 class sqlserver_connection:
 #connection parameters for the primary sql server
     def __init__(self):
-        self.host = "70.179.168.244"
+        self.host = "76.92.246.48"
         self.port = 49172
         self.user = "rob"
         self.password = "supersecurepassword"
